@@ -30,12 +30,25 @@ public class Microflows
 		}
 	}
 
-	public static void testSubscribe(IContext context)
+	public static void testAwsIotSubscribe(IContext context)
 	{
 		try
 		{
 			Map<String, Object> params = new HashMap<String, Object>();
-			Core.execute(context, "Test.TestSubscribe", params);
+			Core.execute(context, "Test.TestAwsIotSubscribe", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+
+	public static void xTestSubscribe(IContext context)
+	{
+		try
+		{
+			Map<String, Object> params = new HashMap<String, Object>();
+			Core.execute(context, "Test.xTestSubscribe", params);
 		}
 		catch (CoreException e)
 		{

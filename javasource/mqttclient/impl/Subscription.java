@@ -1,4 +1,4 @@
-package mqtt.impl;
+package mqttclient.impl;
 
 /**
  * Created by ako on 1/10/2016.

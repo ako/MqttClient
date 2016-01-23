@@ -13,7 +13,7 @@ import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import mqtt.impl.MqttHandler;
+import mqttclient.impl.MqttHandler;
 
 /**
  * 
@@ -25,8 +25,12 @@ public class MqttSubscribe extends CustomJavaAction<Boolean>
 	private Long Timeout;
 	private String TopicName;
 	private String OnMessageMicroflow;
+	private String CA;
+	private String ClientCertificate;
+	private String ClientKey;
+	private String CertificatePassword;
 
-	public MqttSubscribe(IContext context, String BrokerHost, Long BrokerPort, Long Timeout, String TopicName, String OnMessageMicroflow)
+	public MqttSubscribe(IContext context, String BrokerHost, Long BrokerPort, Long Timeout, String TopicName, String OnMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
@@ -34,6 +38,10 @@ public class MqttSubscribe extends CustomJavaAction<Boolean>
 		this.Timeout = Timeout;
 		this.TopicName = TopicName;
 		this.OnMessageMicroflow = OnMessageMicroflow;
+		this.CA = CA;
+		this.ClientCertificate = ClientCertificate;
+		this.ClientKey = ClientKey;
+		this.CertificatePassword = CertificatePassword;
 	}
 
 	@Override
@@ -44,7 +52,7 @@ public class MqttSubscribe extends CustomJavaAction<Boolean>
         try {
             MqttHandler handler = new MqttHandler(logger);
             logger.info(String.format("subscribe: %s", this.TopicName));
-            handler.subscribe(this.BrokerHost, this.BrokerPort, this.TopicName, this.OnMessageMicroflow);
+            handler.subscribe(this.BrokerHost, this.BrokerPort, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword);
             return true;
         } catch (Exception e) {
             return false;
