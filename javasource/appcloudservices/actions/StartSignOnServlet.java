@@ -14,9 +14,6 @@ import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 
-/**
- * 
- */
 public class StartSignOnServlet extends CustomJavaAction<Boolean>
 {
 	public StartSignOnServlet(IContext context)

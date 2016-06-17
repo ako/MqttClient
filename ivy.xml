@@ -1,0 +1,38 @@
+<ivy-module version="2.0">
+    <info organisation="com.mendix" module="mqtt-connector"/>
+    <configurations defaultconfmapping="default">
+        <!--
+          == These jars are needed for exporting the mqtt connector module
+          -->
+        <conf name="default" description="run in modeler" extends="export"/>
+        <!--
+          == These jars are needed for running the connector project
+          -->
+        <conf name="export" description="connector-export"/>
+    </configurations>
+    <dependencies>
+        <!-- for the mqtt connector -->
+        <dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.0.2" conf="export->default"/>
+        <dependency org="org.bouncycastle" name="bcprov-jdk16" rev="1.46" conf="export->default"/>
+        <dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.54" conf="export->default"/>
+        <dependency org="com.google.guava" name="guava" rev="14.0.1" conf="export->default"/>
+
+        <!-- for testing -->
+        <dependency org="ca.szc.configparser" name="java-configparser" rev="0.2"/>
+        <dependency org="org.slf4j" name="slf4j-simple" rev="1.7.5"/>
+        <dependency org="junit" name="junit" rev="4.12"/>
+
+        <!-- for appcloudservices -->
+        <dependency org="org.openid4java" name="openid4java" rev="0.9.8"/>
+        <dependency org="commons-lang" name="commons-lang" rev="2.5"/>
+
+        <!-- other dependencies -->
+        <dependency org="joda-time" name="joda-time" rev="2.8.2"/>
+        <dependency org="org.apache.ws.commons.axiom" name="axiom-api" rev="1.2.19"/>
+        <dependency org="org.apache.commons" name="commons-lang3" rev="3.4"/>
+        <dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.2"/>
+        <dependency org="org.apache.pdfbox" name="pdfbox" rev="1.8.12"/>
+        <dependency org="org.owasp.antisamy" name="antisamy" rev="1.5.3"/>
+
+    </dependencies>
+</ivy-module>

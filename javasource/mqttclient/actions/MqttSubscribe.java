@@ -15,14 +15,13 @@ import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 import mqttclient.impl.MqttHandler;
 
-/**
- * 
- */
 public class MqttSubscribe extends CustomJavaAction<Boolean>
 {
 	private String BrokerHost;
 	private Long BrokerPort;
 	private Long Timeout;
+	private String Username;
+	private String Password;
 	private String TopicName;
 	private String OnMessageMicroflow;
 	private String CA;
@@ -30,12 +29,14 @@ public class MqttSubscribe extends CustomJavaAction<Boolean>
 	private String ClientKey;
 	private String CertificatePassword;
 
-	public MqttSubscribe(IContext context, String BrokerHost, Long BrokerPort, Long Timeout, String TopicName, String OnMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword)
+	public MqttSubscribe(IContext context, String BrokerHost, Long BrokerPort, Long Timeout, String Username, String Password, String TopicName, String OnMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
 		this.BrokerPort = BrokerPort;
 		this.Timeout = Timeout;
+		this.Username = Username;
+		this.Password = Password;
 		this.TopicName = TopicName;
 		this.OnMessageMicroflow = OnMessageMicroflow;
 		this.CA = CA;
@@ -52,7 +53,7 @@ public class MqttSubscribe extends CustomJavaAction<Boolean>
         try {
             MqttHandler handler = new MqttHandler(logger);
             logger.info(String.format("subscribe: %s", this.TopicName));
-            handler.subscribe(this.BrokerHost, this.BrokerPort, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword);
+            handler.subscribe(this.BrokerHost, this.BrokerPort, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
             return true;
         } catch (Exception e) {
             return false;

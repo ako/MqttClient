@@ -15,7 +15,6 @@ import com.mendix.systemwideinterfaces.core.IMendixObject;
 public class Microflows
 {
 	// These are the microflows for the ProfileService module
-
 	public static profileservice.proxies.UserProfile getUserProfile(IContext context, String _openID, String _environmentUUID, String _environmentPassword)
 	{
 		try

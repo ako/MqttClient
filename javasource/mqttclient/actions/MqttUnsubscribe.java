@@ -15,9 +15,6 @@ import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 import mqttclient.impl.MqttHandler;
 
-/**
- * 
- */
 public class MqttUnsubscribe extends CustomJavaAction<Boolean>
 {
 	private String BrokerHost;

@@ -9,7 +9,6 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,19 +26,19 @@ public class MqttHandler {
         }
     }
 
-    public void subscribe(String brokerHost, Long brokerPort, String topicName, String onMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword) throws Exception {
+    public void subscribe(String brokerHost, Long brokerPort, String topicName, String onMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         logger.info("MqttHandler.subscribe");
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword);
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
         connection.subscribe(topicName, onMessageMicroflow);
     }
 
-    public void publish(String brokerHost, Long brokerPort, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword) throws Exception {
+    public void publish(String brokerHost, Long brokerPort, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         logger.info("MqttHandler.publish");
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword);
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
         connection.publish(topicName, message);
     }
 
-    private MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword) throws Exception {
+    private MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         String key = brokerHost + ":" + brokerPort;
         MqttConnection handler;
         synchronized (mqttHandlers) {
@@ -48,7 +47,7 @@ public class MqttHandler {
             if (!mqttHandlers.containsKey(key)) {
                 logger.info("creating new MqttConnection");
                 try {
-                    handler = new MqttConnection(logger, brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword);
+                    handler = new MqttConnection(logger, brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
                     mqttHandlers.put(key, handler);
                 } catch (Exception e) {
                     logger.error(e);
@@ -66,7 +65,7 @@ public class MqttHandler {
     }
 
     public void unsubscribe(String brokerHost, Long brokerPort, String topicName) throws Exception {
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, null, null, null,null);
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, null, null, null,null,null,null);
         connection.unsubscribe(topicName);
     }
 
@@ -76,13 +75,19 @@ public class MqttHandler {
         private MqttClient client;
         private HashMap<String, Subscription> subscriptions = new HashMap<>();
 
-        public MqttConnection(ILogNode logger, String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword) throws Exception {
+        public MqttConnection(ILogNode logger, String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
             logger.info("new MqttConnection");
             this.logger = logger;
             boolean useSsl = (ClientCertificate != null && !ClientCertificate.equals(""));
             String broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
+            if(username != null && !username.equals("")) {
+                connOpts.setUserName(username);
+            }
+            if(password != null && !password.equals("")) {
+                connOpts.setPassword(password.toCharArray());
+            }
             if (useSsl) {
                 broker = String.format("ssl://%s:%d", brokerHost, brokerPort);
                 connOpts = new MqttConnectOptions();
@@ -90,7 +95,7 @@ public class MqttHandler {
                 connOpts.setKeepAliveInterval(60);
                 try {
                     String resourcesPath = Core.getConfiguration().getResourcesPath() + File.separator;
-                    connOpts.setSocketFactory(SslUtil2.getSslSocketFactory(
+                    connOpts.setSocketFactory(SslUtil.getSslSocketFactory(
                             resourcesPath + CA,
                             resourcesPath + ClientCertificate,
                             resourcesPath + ClientKey,
@@ -172,10 +177,10 @@ public class MqttHandler {
         }
 
         public void publish(String topic, String message) throws MqttException {
-            logger.info("MqttConnection.publish");
+            logger.info("MqttConnection.publish: %s, %s".format(topic,message));
             try {
                 MqttMessage payload = new MqttMessage(message.getBytes());
-                int qos = 2;
+                int qos = 1;
                 payload.setQos(qos);
                 client.publish(topic, payload);
                 logger.info("Message published");

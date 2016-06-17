@@ -15,9 +15,6 @@ import com.mendix.systemwideinterfaces.core.ISession;
 import com.mendix.webui.CustomJavaAction;
 import java.util.Collection;
 
-/**
- * 
- */
 public class LogOutUser extends CustomJavaAction<Boolean>
 {
 	private String openId;

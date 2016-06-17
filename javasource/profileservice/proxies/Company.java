@@ -4,9 +4,6 @@
 
 package profileservice.proxies;
 
-/**
- * 
- */
 public class Company
 {
 	private final com.mendix.systemwideinterfaces.core.IMendixObject companyMendixObject;

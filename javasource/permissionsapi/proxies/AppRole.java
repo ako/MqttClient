@@ -4,9 +4,6 @@
 
 package permissionsapi.proxies;
 
-/**
- * 
- */
 public class AppRole
 {
 	private final com.mendix.systemwideinterfaces.core.IMendixObject appRoleMendixObject;

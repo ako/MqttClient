@@ -15,7 +15,6 @@ import com.mendix.systemwideinterfaces.core.IMendixObject;
 public class Microflows
 {
 	// These are the microflows for the AppCloudServices module
-
 	public static boolean checkUserRolesRemoved(IContext context, system.proxies.User _user)
 	{
 		try
@@ -29,7 +28,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void inviteUserToApp(IContext context, String _inviteeEmailAddress, system.proxies.UserRole _userRole, String _inviterEmailAddress)
 	{
 		try
@@ -45,7 +43,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void invokeOnFirstLoginAppCloudUser(IContext context, String _userIdentity)
 	{
 		try
@@ -59,7 +56,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void invokeOnNonFirstLoginAppCloudUser(IContext context, system.proxies.User _user)
 	{
 		try
@@ -73,7 +69,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean provisionAsAppCloudUser(IContext context, system.proxies.User _userAccount, String _userIdentity)
 	{
 		try
@@ -88,7 +83,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void refreshUserPermissions(IContext context, String _openId)
 	{
 		try
@@ -102,7 +96,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static profileservice.proxies.UserProfile retrieveUserProfile(IContext context, String _userIdentity)
 	{
 		try
@@ -117,7 +110,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean retrieveUserRoles(IContext context, system.proxies.User _user)
 	{
 		try
@@ -131,7 +123,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean startAppCloudServices(IContext context)
 	{
 		try

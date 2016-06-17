@@ -4,9 +4,6 @@
 
 package unittesting.proxies;
 
-/**
- * 
- */
 public class TestSuite
 {
 	private final com.mendix.systemwideinterfaces.core.IMendixObject testSuiteMendixObject;

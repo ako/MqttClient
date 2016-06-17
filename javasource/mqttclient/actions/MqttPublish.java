@@ -15,13 +15,12 @@ import com.mendix.webui.CustomJavaAction;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import mqttclient.impl.MqttHandler;
 
-/**
- * 
- */
 public class MqttPublish extends CustomJavaAction<Boolean>
 {
 	private String BrokerHost;
 	private Long BrokerPort;
+	private String Username;
+	private String Password;
 	private String TopicName;
 	private String Payload;
 	private String CA;
@@ -29,11 +28,13 @@ public class MqttPublish extends CustomJavaAction<Boolean>
 	private String ClientKey;
 	private String CertificatePassword;
 
-	public MqttPublish(IContext context, String BrokerHost, Long BrokerPort, String TopicName, String Payload, String CA, String ClientCertificate, String ClientKey, String CertificatePassword)
+	public MqttPublish(IContext context, String BrokerHost, Long BrokerPort, String Username, String Password, String TopicName, String Payload, String CA, String ClientCertificate, String ClientKey, String CertificatePassword)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
 		this.BrokerPort = BrokerPort;
+		this.Username = Username;
+		this.Password = Password;
 		this.TopicName = TopicName;
 		this.Payload = Payload;
 		this.CA = CA;
@@ -48,7 +49,7 @@ public class MqttPublish extends CustomJavaAction<Boolean>
 		// BEGIN USER CODE
         MqttHandler handler = new MqttHandler(Core.getLogger("MqttHandler"));
         try {
-            handler.publish(this.BrokerHost, this.BrokerPort, this.TopicName, this.Payload, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword);
+            handler.publish(this.BrokerHost, this.BrokerPort, this.TopicName, this.Payload, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
             return true;
         } catch (Exception e) {
             return false;

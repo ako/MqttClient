@@ -13,9 +13,6 @@ import unittesting.TestManager;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 
-/**
- * 
- */
 public class FindAllUnitTests extends CustomJavaAction<Boolean>
 {
 	public FindAllUnitTests(IContext context)

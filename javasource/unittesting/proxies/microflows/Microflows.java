@@ -14,7 +14,6 @@ import com.mendix.systemwideinterfaces.core.IContext;
 public class Microflows
 {
 	// These are the microflows for the UnitTesting module
-
 	public static void assertTrue1(IContext context, boolean _valueToAssert)
 	{
 		try
@@ -28,7 +27,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void assertTrue2(IContext context, boolean _valueToAssert, String _message)
 	{
 		try
@@ -43,7 +41,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void iVK_ResetUnitTests(IContext context)
 	{
 		try
@@ -56,7 +53,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void iVK_RunAllTests(IContext context)
 	{
 		try
@@ -69,7 +65,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void iVK_ToggleAutoRollback(IContext context, unittesting.proxies.TestSuite _testSuite)
 	{
 		try
@@ -83,7 +78,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void iVK_UnitTestDetails(IContext context, unittesting.proxies.UnitTest _unitTest)
 	{
 		try
@@ -97,7 +91,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void oCh_TestSuiteRollback(IContext context, unittesting.proxies.TestSuite _testSuite)
 	{
 		try
@@ -111,7 +104,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void reportStep(IContext context, String _message)
 	{
 		try
@@ -125,7 +117,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void rerunUnittest(IContext context, unittesting.proxies.UnitTest _unitTestRun)
 	{
 		try
@@ -139,7 +130,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void setup(IContext context)
 	{
 		try
@@ -152,7 +142,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void startUnittestRun(IContext context, unittesting.proxies.TestSuite _testSuite)
 	{
 		try
@@ -166,7 +155,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean startup(IContext context)
 	{
 		try
@@ -179,7 +167,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void tearDown(IContext context)
 	{
 		try
@@ -192,7 +179,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean test_FailingUnitTest(IContext context)
 	{
 		try
@@ -205,7 +191,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean test_IsAssertionErrorCheck(IContext context)
 	{
 		try
@@ -218,7 +203,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean test_ValidUnitTest(IContext context)
 	{
 		try
@@ -231,7 +215,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void test_WithoutReturn(IContext context)
 	{
 		try
@@ -244,7 +227,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static void unitTestOverview(IContext context)
 	{
 		try
@@ -257,7 +239,6 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-
 	public static boolean uT_ValidUnitTest(IContext context)
 	{
 		try
