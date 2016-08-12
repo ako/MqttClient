@@ -52,3 +52,5 @@ Temporary Items
 deployment
 certs
 userlib/*
+userlib/*.jar
+
