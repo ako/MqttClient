@@ -9,6 +9,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.io.File;
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,7 +107,12 @@ public class MqttHandler {
                     throw e;
                 }
             }
-            String clientId = "JavaSample";
+            //String clientId = "JavaSample";
+            String hostname = InetAddress.getLocalHost().getHostName();
+            String xasId = Core.getXASId();
+            String clientId = "MxClient_" + xasId + "_" + hostname + "_" + brokerHost + "_" + brokerPort;
+            logger.info("new MqttConnection client id " + clientId);
+
             MemoryPersistence persistence = new MemoryPersistence();
 
             try {

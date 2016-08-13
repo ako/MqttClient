@@ -30,6 +30,10 @@ included in the connector mpk.
 
 ## Version history
 
+* 0.9 - 2016-08-13 - initial release
+  * Implementation
+  * Fix for subscribing to multiple topics with different microflows
+  * Fix to ensure unique client id
 
  [1]: http://mqtt.org/
  [2]: http://mosquitto.org/
