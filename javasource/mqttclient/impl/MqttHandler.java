@@ -9,6 +9,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.io.File;
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,13 +107,19 @@ public class MqttHandler {
                     throw e;
                 }
             }
-            String clientId = "JavaSample";
+            //String clientId = "JavaSample";
+            String hostname = InetAddress.getLocalHost().getHostName();
+            String xasId = Core.getXASId();
+            String clientId = "MxClient_" + xasId + "_" + hostname + "_" + brokerHost + "_" + brokerPort;
+            logger.info("new MqttConnection client id " + clientId);
+
             MemoryPersistence persistence = new MemoryPersistence();
 
             try {
                 this.client = new MqttClient(broker, clientId, persistence);
                 logger.info("Connecting to broker: " + broker);
                 client.connect(connOpts);
+                client.setCallback(new MxMqttCallback(logger, client, subscriptions));
                 logger.info("Connected");
             } catch (Exception e) {
                 logger.error(e);
@@ -133,41 +140,6 @@ public class MqttHandler {
             logger.info("MqttConnection.subscribe");
             try {
                 client.subscribe(topic);
-
-                //final IContext ctx = this.createContext();
-                final String microflow = onMessageMicroflow;
-
-                client.setCallback(new MqttCallback() {
-
-                    @Override
-                    public void connectionLost(Throwable throwable) {
-                        logger.info("connectionLost: " + throwable.getMessage());
-                        logger.warn(throwable);
-                    }
-
-                    @Override
-                    public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-                        try {
-                            logger.info(String.format("messageArrived: %s, %s", s, new String(mqttMessage.getPayload())));
-                            IContext ctx = Core.createSystemContext();
-
-                            ISession session = ctx.getSession();
-                            logger.info(String.format("Calling onMessage microflow: %s", microflow));
-                            //Core.executeAsync(ctx, microflow, true, ImmutableMap.of("Topic", s, "Payload", new String(mqttMessage.getPayload())));
-                            final ImmutableMap map = ImmutableMap.of("Topic", s, "Payload", new String(mqttMessage.getPayload()));
-                            logger.info("Parameter map: " + map);
-                            Core.execute(ctx, microflow, true, map);
-                        } catch (Exception e) {
-                            logger.error(e);
-                        }
-                    }
-
-                    @Override
-                    public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-                        logger.info("deliveryComplete");
-                    }
-                });
-
                 subscriptions.put(topic, new Subscription(topic, onMessageMicroflow));
             } catch (Exception e) {
                 logger.error(e);

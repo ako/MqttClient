@@ -28,12 +28,52 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
+	public static void onTopic1Message(IContext context, String _payload, String _topic)
+	{
+		try
+		{
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("Payload", _payload);
+			params.put("Topic", _topic);
+			Core.execute(context, "TestMqttClient.OnTopic1Message", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void onTopic2Message(IContext context, String _payload, String _topic)
+	{
+		try
+		{
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("Payload", _payload);
+			params.put("Topic", _topic);
+			Core.execute(context, "TestMqttClient.OnTopic2Message", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
 	public static void testAwsIotSubscribe(IContext context)
 	{
 		try
 		{
 			Map<String, Object> params = new HashMap<String, Object>();
 			Core.execute(context, "TestMqttClient.TestAwsIotSubscribe", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void testSubscribeTwoMosquittoTopics(IContext context)
+	{
+		try
+		{
+			Map<String, Object> params = new HashMap<String, Object>();
+			Core.execute(context, "TestMqttClient.TestSubscribeTwoMosquittoTopics", params);
 		}
 		catch (CoreException e)
 		{

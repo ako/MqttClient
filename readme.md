@@ -8,16 +8,32 @@ Tested with [AWS IoT][5], [The Things network][4] and [mosquitto][2] brokers.
 Main java actions:
 
  * MqttPublish - publish a message to specified topic
- * MqttSubscribe - subscribe to a topic. Required you to specify a microflow which will be called upon receiving 
+ * MqttSubscribe - subscribe to a topic. Required you to specify a microflow which will be called upon receiving
    a message. This microflow should have two string parameters: Topic and Payload.
- * MqttUnsubscribe
- 
+ * MqttUnsubscribe - unsubscribe from topic
+
+  ![MQTT Microflow actions toolbox][9]
+
 ## Usage with Amazon AWS IoT
  
 You need to register your app as a Thing on AWS IoT. Download the generated certificates and store them in your resources 
 folder of your app. When subscribing or publishing a message specify their location reletive to the resources folder.
 
 ## Usage with TTN
+
+For TTN you can leave the certifice info empty, instead provide username and password.
+
+Microflow to subscribe to an MQTT topic:
+
+ ![MQTT subscribe to topic][10]
+
+Configuration of subscribe for TTN:
+
+ ![][11]
+
+Microflow to handled messages received:
+
+ ![][12]
 
 ## Development
 
@@ -30,6 +46,10 @@ included in the connector mpk.
 
 ## Version history
 
+* 0.9 - 2016-08-13 - initial release
+  * Implementation
+  * Fix for subscribing to multiple topics with different microflows
+  * Fix to ensure unique client id
 
  [1]: http://mqtt.org/
  [2]: http://mosquitto.org/
@@ -39,3 +59,7 @@ included in the connector mpk.
  [6]: https://staging.thethingsnetwork.org/wiki/Backend/Connect/Application
  [7]: https://staging.thethingsnetwork.org/wiki/Backend/Security
  [8]: https://staging.thethingsnetwork.org/wiki/Backend/ttnctl/QuickStart
+ [9]: docs/images/mqtt-toolbox.png
+ [10]: docs/images/mqtt-subscribe-action.png
+ [11]: docs/images/mqtt-subscribe-ttn.png
+ [12]: docs/images/mqtt-ttn-on-message-mf.png

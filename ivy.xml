@@ -12,7 +12,7 @@
     </configurations>
     <dependencies>
         <!-- for the mqtt connector -->
-        <dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.0.2" conf="export->default"/>
+        <dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.1.0" conf="export->default"/>
         <dependency org="org.bouncycastle" name="bcprov-jdk16" rev="1.46" conf="export->default"/>
         <dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.54" conf="export->default"/>
         <dependency org="com.google.guava" name="guava" rev="14.0.1" conf="export->default"/>
@@ -25,10 +25,10 @@
         <!-- for appcloudservices -->
         <dependency org="org.openid4java" name="openid4java" rev="0.9.8"/>
         <dependency org="commons-lang" name="commons-lang" rev="2.5"/>
+        <dependency org="org.apache.ws.commons.axiom" name="axiom-api" rev="1.2.19"/>
 
         <!-- other dependencies -->
         <dependency org="joda-time" name="joda-time" rev="2.8.2"/>
-        <dependency org="org.apache.ws.commons.axiom" name="axiom-api" rev="1.2.19"/>
         <dependency org="org.apache.commons" name="commons-lang3" rev="3.4"/>
         <dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.2"/>
         <dependency org="org.apache.pdfbox" name="pdfbox" rev="1.8.12"/>
