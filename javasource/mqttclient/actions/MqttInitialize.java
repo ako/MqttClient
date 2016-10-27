@@ -12,7 +12,7 @@ package mqttclient.actions;
 import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import mqttclient.impl.MqttHandler;
+import mqttclient.impl.MqttConnector;
 
 public class MqttInitialize extends CustomJavaAction<Boolean>
 {
@@ -26,7 +26,7 @@ public class MqttInitialize extends CustomJavaAction<Boolean>
 	{
 		// BEGIN USER CODE
 		//throw new com.mendix.systemwideinterfaces.MendixRuntimeException("Java action was not implemented");
-		MqttHandler handler = new MqttHandler(Core.getLogger("MqttHandler"));
+		MqttConnector handler = new MqttConnector(Core.getLogger("MqttConnector"));
 		return true;
 		// END USER CODE
 	}

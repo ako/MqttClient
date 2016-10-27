@@ -8,6 +8,7 @@ import com.mendix.systemwideinterfaces.core.ISession;
 import org.eclipse.paho.client.mqttv3.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by ako on 12-8-2016.
@@ -15,9 +16,9 @@ import java.util.HashMap;
 public class MxMqttCallback implements MqttCallback {
     private ILogNode logger = null;
     private MqttClient client = null;
-    private HashMap<String, Subscription> subscriptions = null;
+    private HashMap<String, MqttSubscription> subscriptions = null;
 
-    public MxMqttCallback(ILogNode logger, MqttClient client, HashMap<String, Subscription> subscriptions) {
+    public MxMqttCallback(ILogNode logger, MqttClient client, HashMap<String, MqttSubscription> subscriptions) {
         this.logger = logger;
         this.client = client;
         this.subscriptions = subscriptions;
@@ -40,15 +41,15 @@ public class MxMqttCallback implements MqttCallback {
             logger.info(String.format("messageArrived: %s, %s, %s", topic, new String(mqttMessage.getPayload()), client.getClientId()));
             IContext ctx = Core.createSystemContext();
             ISession session = ctx.getSession();
-            if(subscriptions.containsKey(topic)) {
-                String microflow = subscriptions.get(topic).getOnMessageMicroflow();
+            MqttSubscription subscription = getSubscriptionForTopic(topic);
+            if (subscription != null) {
+                String microflow = subscription.getOnMessageMicroflow();
                 logger.info(String.format("Calling onMessage microflow: %s, %s", microflow, client.getClientId()));
-                //Core.executeAsync(ctx, microflow, true, ImmutableMap.of("Topic", s, "Payload", new String(mqttMessage.getPayload())));
                 final ImmutableMap map = ImmutableMap.of("Topic", topic, "Payload", new String(mqttMessage.getPayload()));
                 logger.info("Parameter map: " + map);
                 Core.execute(ctx, microflow, true, map);
             } else {
-                logger.error(String.format("Cannot find microflow for message received on topic %s",topic));
+                logger.error(String.format("Cannot find microflow for message received on topic %s", topic));
             }
         } catch (Exception e) {
             logger.error(e);
@@ -58,5 +59,25 @@ public class MxMqttCallback implements MqttCallback {
     @Override
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
         logger.info(String.format("deliveryComplete: %s", client.getClientId()));
+    }
+
+    /**
+     * find possibly wildcarded subscription for specific topic
+     */
+    private MqttSubscription getSubscriptionForTopic(String topic) {
+
+        logger.info("getSubscriptionForTopic: " + topic);
+        Iterator<String> subscriptionTopics = subscriptions.keySet().iterator();
+        while (subscriptionTopics.hasNext()) {
+            String topicWithWildcards = subscriptionTopics.next();
+            String topicWithWildcardsRe = topicWithWildcards.replaceAll("\\+", "[^/]+").replaceAll("/#", "\\(|/.*\\)");
+            logger.info(String.format("Comparing topic %s with subscription %s as regex %s", topic, topicWithWildcards, topicWithWildcardsRe));
+            if (topic.matches(topicWithWildcardsRe)) {
+                logger.info("Found subscription " + topicWithWildcards);
+                return subscriptions.get(topicWithWildcards);
+            }
+        }
+        logger.info("No subscription found for topic " + topic);
+        return null;
     }
 }

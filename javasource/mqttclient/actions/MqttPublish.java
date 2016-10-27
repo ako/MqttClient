@@ -12,8 +12,7 @@ package mqttclient.actions;
 import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import com.mendix.systemwideinterfaces.core.IMendixObject;
-import mqttclient.impl.MqttHandler;
+import mqttclient.impl.MqttConnector;
 
 public class MqttPublish extends CustomJavaAction<Boolean>
 {
@@ -47,7 +46,7 @@ public class MqttPublish extends CustomJavaAction<Boolean>
 	public Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-        MqttHandler handler = new MqttHandler(Core.getLogger("MqttHandler"));
+        MqttConnector handler = new MqttConnector(Core.getLogger("MqttConnector"));
         try {
             handler.publish(this.BrokerHost, this.BrokerPort, this.TopicName, this.Payload, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
             return true;

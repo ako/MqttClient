@@ -13,7 +13,7 @@ import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import mqttclient.impl.MqttHandler;
+import mqttclient.impl.MqttConnector;
 
 public class MqttSubscribe extends CustomJavaAction<Boolean>
 {
@@ -49,9 +49,9 @@ public class MqttSubscribe extends CustomJavaAction<Boolean>
 	public Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-        ILogNode logger = Core.getLogger("MqttHandler");
+        ILogNode logger = Core.getLogger("MqttConnector");
         try {
-            MqttHandler handler = new MqttHandler(logger);
+            MqttConnector handler = new MqttConnector(logger);
             logger.info(String.format("subscribe: %s", this.TopicName));
             handler.subscribe(this.BrokerHost, this.BrokerPort, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
             return true;

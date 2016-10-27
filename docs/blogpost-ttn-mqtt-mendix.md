@@ -44,6 +44,10 @@ Register personalized device:
       INFO Generating random NwkSKey and AppSKey...
       INFO Registered personalized device           AppSKey=XXX DevAddr=02020701 Flags=0 NwkSKey=XXXX
 
+    λ ttnctl-windows-amd64.exe devices register personalized 02020601
+      INFO Generating random NwkSKey and AppSKey...
+      INFO Registered personalized device           AppSKey=6BA0945D09C2A40132BE63F55335C3CB DevAddr=02020601 Flags=0 NwkSKey=71F9D1C79E97AAC4A7E3C586834B3373
+
 List devices:
 
     λ ttnctl-windows-amd64.exe devices
@@ -81,3 +85,4 @@ Device details:
   [2]: http://thethingsnetwork.org/
   [3]: https://staging.thethingsnetwork.org/wiki/Backend/Security
   [4]: https://staging.thethingsnetwork.org/wiki/Backend/ttnctl/QuickStart
+  [5]: http://forum.thethingsnetwork.org/t/ttn-uno-beta-release-documentation/290
