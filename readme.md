@@ -44,12 +44,19 @@ Java dependencies are managed using Apache Ivy. There are two configuration:
 Before you export the connector module run runivy-export.cmd to ensure you have the correct set of libraries to be
 included in the connector mpk.
 
+## License
+
+ [Apache License V2.0][13]
+
 ## Version history
 
 * 0.9 - 2016-08-13 - initial release
   * Implementation
   * Fix for subscribing to multiple topics with different microflows
   * Fix to ensure unique client id
+* 0.9.1 - 2016-12-11 - reconnect
+  * Resubscribe on reconnect
+  * Upgrade to mendix 6.10.0
 
  [1]: http://mqtt.org/
  [2]: http://mosquitto.org/
@@ -63,3 +70,4 @@ included in the connector mpk.
  [10]: docs/images/mqtt-subscribe-action.png
  [11]: docs/images/mqtt-subscribe-ttn.png
  [12]: docs/images/mqtt-ttn-on-message-mf.png
+ [13]: license.txt
