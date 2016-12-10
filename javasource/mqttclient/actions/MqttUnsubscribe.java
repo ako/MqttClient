@@ -15,13 +15,13 @@ import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 import mqttclient.impl.MqttConnector;
 
-public class MqttUnsubscribe extends CustomJavaAction<Boolean>
+public class MqttUnsubscribe extends CustomJavaAction<java.lang.Boolean>
 {
-	private String BrokerHost;
-	private Long BrokerPort;
-	private String TopicName;
+	private java.lang.String BrokerHost;
+	private java.lang.Long BrokerPort;
+	private java.lang.String TopicName;
 
-	public MqttUnsubscribe(IContext context, String BrokerHost, Long BrokerPort, String TopicName)
+	public MqttUnsubscribe(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String TopicName)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
@@ -30,7 +30,7 @@ public class MqttUnsubscribe extends CustomJavaAction<Boolean>
 	}
 
 	@Override
-	public Boolean executeAction() throws Exception
+	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
         ILogNode logger = Core.getLogger("MqttConnector");
@@ -49,7 +49,7 @@ public class MqttUnsubscribe extends CustomJavaAction<Boolean>
 	 * Returns a string representation of this action
 	 */
 	@Override
-	public String toString()
+	public java.lang.String toString()
 	{
 		return "MqttUnsubscribe";
 	}

@@ -122,7 +122,7 @@ public class Statistics
 	/**
 	 * @return value of MaxNumberOfConcurrentUsers
 	 */
-	public final Integer getMaxNumberOfConcurrentUsers()
+	public final java.lang.Integer getMaxNumberOfConcurrentUsers()
 	{
 		return getMaxNumberOfConcurrentUsers(getContext());
 	}
@@ -131,16 +131,16 @@ public class Statistics
 	 * @param context
 	 * @return value of MaxNumberOfConcurrentUsers
 	 */
-	public final Integer getMaxNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Integer getMaxNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Integer) getMendixObject().getValue(context, MemberNames.MaxNumberOfConcurrentUsers.toString());
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.MaxNumberOfConcurrentUsers.toString());
 	}
 
 	/**
 	 * Set value of MaxNumberOfConcurrentUsers
 	 * @param maxnumberofconcurrentusers
 	 */
-	public final void setMaxNumberOfConcurrentUsers(Integer maxnumberofconcurrentusers)
+	public final void setMaxNumberOfConcurrentUsers(java.lang.Integer maxnumberofconcurrentusers)
 	{
 		setMaxNumberOfConcurrentUsers(getContext(), maxnumberofconcurrentusers);
 	}
@@ -150,7 +150,7 @@ public class Statistics
 	 * @param context
 	 * @param maxnumberofconcurrentusers
 	 */
-	public final void setMaxNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context, Integer maxnumberofconcurrentusers)
+	public final void setMaxNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer maxnumberofconcurrentusers)
 	{
 		getMendixObject().setValue(context, MemberNames.MaxNumberOfConcurrentUsers.toString(), maxnumberofconcurrentusers);
 	}
@@ -158,7 +158,7 @@ public class Statistics
 	/**
 	 * @return value of MaxNumberOfAnonymousConcurrentUsers
 	 */
-	public final Integer getMaxNumberOfAnonymousConcurrentUsers()
+	public final java.lang.Integer getMaxNumberOfAnonymousConcurrentUsers()
 	{
 		return getMaxNumberOfAnonymousConcurrentUsers(getContext());
 	}
@@ -167,16 +167,16 @@ public class Statistics
 	 * @param context
 	 * @return value of MaxNumberOfAnonymousConcurrentUsers
 	 */
-	public final Integer getMaxNumberOfAnonymousConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Integer getMaxNumberOfAnonymousConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Integer) getMendixObject().getValue(context, MemberNames.MaxNumberOfAnonymousConcurrentUsers.toString());
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.MaxNumberOfAnonymousConcurrentUsers.toString());
 	}
 
 	/**
 	 * Set value of MaxNumberOfAnonymousConcurrentUsers
 	 * @param maxnumberofanonymousconcurrentusers
 	 */
-	public final void setMaxNumberOfAnonymousConcurrentUsers(Integer maxnumberofanonymousconcurrentusers)
+	public final void setMaxNumberOfAnonymousConcurrentUsers(java.lang.Integer maxnumberofanonymousconcurrentusers)
 	{
 		setMaxNumberOfAnonymousConcurrentUsers(getContext(), maxnumberofanonymousconcurrentusers);
 	}
@@ -186,7 +186,7 @@ public class Statistics
 	 * @param context
 	 * @param maxnumberofanonymousconcurrentusers
 	 */
-	public final void setMaxNumberOfAnonymousConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context, Integer maxnumberofanonymousconcurrentusers)
+	public final void setMaxNumberOfAnonymousConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer maxnumberofanonymousconcurrentusers)
 	{
 		getMendixObject().setValue(context, MemberNames.MaxNumberOfAnonymousConcurrentUsers.toString(), maxnumberofanonymousconcurrentusers);
 	}
@@ -194,7 +194,7 @@ public class Statistics
 	/**
 	 * @return value of MaxNumberOfNamedUsers
 	 */
-	public final Integer getMaxNumberOfNamedUsers()
+	public final java.lang.Integer getMaxNumberOfNamedUsers()
 	{
 		return getMaxNumberOfNamedUsers(getContext());
 	}
@@ -203,16 +203,16 @@ public class Statistics
 	 * @param context
 	 * @return value of MaxNumberOfNamedUsers
 	 */
-	public final Integer getMaxNumberOfNamedUsers(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Integer getMaxNumberOfNamedUsers(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Integer) getMendixObject().getValue(context, MemberNames.MaxNumberOfNamedUsers.toString());
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.MaxNumberOfNamedUsers.toString());
 	}
 
 	/**
 	 * Set value of MaxNumberOfNamedUsers
 	 * @param maxnumberofnamedusers
 	 */
-	public final void setMaxNumberOfNamedUsers(Integer maxnumberofnamedusers)
+	public final void setMaxNumberOfNamedUsers(java.lang.Integer maxnumberofnamedusers)
 	{
 		setMaxNumberOfNamedUsers(getContext(), maxnumberofnamedusers);
 	}
@@ -222,7 +222,7 @@ public class Statistics
 	 * @param context
 	 * @param maxnumberofnamedusers
 	 */
-	public final void setMaxNumberOfNamedUsers(com.mendix.systemwideinterfaces.core.IContext context, Integer maxnumberofnamedusers)
+	public final void setMaxNumberOfNamedUsers(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer maxnumberofnamedusers)
 	{
 		getMendixObject().setValue(context, MemberNames.MaxNumberOfNamedUsers.toString(), maxnumberofnamedusers);
 	}

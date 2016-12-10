@@ -111,7 +111,7 @@ public class AppRole
 	/**
 	 * @return value of UUID
 	 */
-	public final String getUUID()
+	public final java.lang.String getUUID()
 	{
 		return getUUID(getContext());
 	}
@@ -120,16 +120,16 @@ public class AppRole
 	 * @param context
 	 * @return value of UUID
 	 */
-	public final String getUUID(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getUUID(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.UUID.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.UUID.toString());
 	}
 
 	/**
 	 * Set value of UUID
 	 * @param uuid
 	 */
-	public final void setUUID(String uuid)
+	public final void setUUID(java.lang.String uuid)
 	{
 		setUUID(getContext(), uuid);
 	}
@@ -139,7 +139,7 @@ public class AppRole
 	 * @param context
 	 * @param uuid
 	 */
-	public final void setUUID(com.mendix.systemwideinterfaces.core.IContext context, String uuid)
+	public final void setUUID(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String uuid)
 	{
 		getMendixObject().setValue(context, MemberNames.UUID.toString(), uuid);
 	}
@@ -147,7 +147,7 @@ public class AppRole
 	/**
 	 * @return value of DisplayName
 	 */
-	public final String getDisplayName()
+	public final java.lang.String getDisplayName()
 	{
 		return getDisplayName(getContext());
 	}
@@ -156,16 +156,16 @@ public class AppRole
 	 * @param context
 	 * @return value of DisplayName
 	 */
-	public final String getDisplayName(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getDisplayName(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.DisplayName.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.DisplayName.toString());
 	}
 
 	/**
 	 * Set value of DisplayName
 	 * @param displayname
 	 */
-	public final void setDisplayName(String displayname)
+	public final void setDisplayName(java.lang.String displayname)
 	{
 		setDisplayName(getContext(), displayname);
 	}
@@ -175,7 +175,7 @@ public class AppRole
 	 * @param context
 	 * @param displayname
 	 */
-	public final void setDisplayName(com.mendix.systemwideinterfaces.core.IContext context, String displayname)
+	public final void setDisplayName(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String displayname)
 	{
 		getMendixObject().setValue(context, MemberNames.DisplayName.toString(), displayname);
 	}

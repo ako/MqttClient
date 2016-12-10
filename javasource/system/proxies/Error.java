@@ -115,7 +115,7 @@ public class Error
 	/**
 	 * @return value of ErrorType
 	 */
-	public final String getErrorType()
+	public final java.lang.String getErrorType()
 	{
 		return getErrorType(getContext());
 	}
@@ -124,16 +124,16 @@ public class Error
 	 * @param context
 	 * @return value of ErrorType
 	 */
-	public final String getErrorType(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getErrorType(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.ErrorType.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.ErrorType.toString());
 	}
 
 	/**
 	 * Set value of ErrorType
 	 * @param errortype
 	 */
-	public final void setErrorType(String errortype)
+	public final void setErrorType(java.lang.String errortype)
 	{
 		setErrorType(getContext(), errortype);
 	}
@@ -143,7 +143,7 @@ public class Error
 	 * @param context
 	 * @param errortype
 	 */
-	public final void setErrorType(com.mendix.systemwideinterfaces.core.IContext context, String errortype)
+	public final void setErrorType(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String errortype)
 	{
 		getMendixObject().setValue(context, MemberNames.ErrorType.toString(), errortype);
 	}
@@ -151,7 +151,7 @@ public class Error
 	/**
 	 * @return value of Message
 	 */
-	public final String getMessage()
+	public final java.lang.String getMessage()
 	{
 		return getMessage(getContext());
 	}
@@ -160,16 +160,16 @@ public class Error
 	 * @param context
 	 * @return value of Message
 	 */
-	public final String getMessage(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getMessage(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Message.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Message.toString());
 	}
 
 	/**
 	 * Set value of Message
 	 * @param message
 	 */
-	public final void setMessage(String message)
+	public final void setMessage(java.lang.String message)
 	{
 		setMessage(getContext(), message);
 	}
@@ -179,7 +179,7 @@ public class Error
 	 * @param context
 	 * @param message
 	 */
-	public final void setMessage(com.mendix.systemwideinterfaces.core.IContext context, String message)
+	public final void setMessage(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String message)
 	{
 		getMendixObject().setValue(context, MemberNames.Message.toString(), message);
 	}
@@ -187,7 +187,7 @@ public class Error
 	/**
 	 * @return value of Stacktrace
 	 */
-	public final String getStacktrace()
+	public final java.lang.String getStacktrace()
 	{
 		return getStacktrace(getContext());
 	}
@@ -196,16 +196,16 @@ public class Error
 	 * @param context
 	 * @return value of Stacktrace
 	 */
-	public final String getStacktrace(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getStacktrace(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Stacktrace.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Stacktrace.toString());
 	}
 
 	/**
 	 * Set value of Stacktrace
 	 * @param stacktrace
 	 */
-	public final void setStacktrace(String stacktrace)
+	public final void setStacktrace(java.lang.String stacktrace)
 	{
 		setStacktrace(getContext(), stacktrace);
 	}
@@ -215,7 +215,7 @@ public class Error
 	 * @param context
 	 * @param stacktrace
 	 */
-	public final void setStacktrace(com.mendix.systemwideinterfaces.core.IContext context, String stacktrace)
+	public final void setStacktrace(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String stacktrace)
 	{
 		getMendixObject().setValue(context, MemberNames.Stacktrace.toString(), stacktrace);
 	}

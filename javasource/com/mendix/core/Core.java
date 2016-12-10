@@ -653,7 +653,7 @@ public final class Core
 	 * Retrieves object list based on the given XPath query (asynchronously).
 	 * @param context the context.
 	 * @param xpathQuery the XPath query to execute.
-	 * @param amount maximum number of objects to retrieve. 
+	 * @param amount maximum number of objects to retrieve. If amount is 0, all objects will be retrieved.
 	 * @param offset index of first object to retrieve.
 	 * @param sort sorting of returned objects when retrieved from the database (e.g. <"Name", "ASC">, <"Age", "DESC">).
 	 * @param depth	indicates the level until which each reference (IMendixIdentifier) is also retrieved as an IMendixObject.
@@ -668,7 +668,7 @@ public final class Core
 	 * Retrieves object list based on the given XPath query (synchronously).
 	 * @param context the context.
 	 * @param xpathQuery the XPath query to execute.
-	 * @param amount maximum number of objects to retrieve. 
+	 * @param amount maximum number of objects to retrieve. If amount is 0, all objects will be retrieved.
 	 * @param offset index of first object to retrieve.
 	 * @param sort sorting of returned objects when retrieved from the database (e.g. <"Name", "ASC">, <"Age", "DESC">).
 	 * @param depth	indicates the level until which each reference (IMendixIdentifier) is also retrieved as an IMendixObject.
@@ -683,7 +683,7 @@ public final class Core
 	 * Retrieves raw data (IDataTables) based on the given XPath query (synchronously).
 	 * @param context the context.
 	 * @param xpathQuery the XPath query to execute.
-	 * @param amount maximum number of objects to retrieve. 
+	 * @param amount maximum number of objects to retrieve. If amount is 0, all objects will be retrieved.
 	 * @param offset index of first object to retrieve.
 	 * @param sort sorting of returned objects when retrieved from the database (e.g. <"Name", "ASC">, <"Age", "DESC">).
 	 * @param depth	indicates the level until which each reference (IMendixIdentifier) is also retrieved as an IMendixObject.
@@ -738,7 +738,7 @@ public final class Core
 	 * Retrieves object list based on the given XPath query (synchronously).
 	 * @param context the context.
 	 * @param xpathQuery the XPath query to execute.
-	 * @param amount maximum number of objects to retrieve. 
+	 * @param amount maximum number of objects to retrieve. If amount is 0, all objects will be retrieved.
 	 * @param offset index of first object to retrieve.
 	 * @param sort sorting of returned objects when retrieved from the database (e.g. <"Name", "ASC">, <"Age", "DESC">).
 	 * @return the list of retrieved objects.
@@ -775,7 +775,7 @@ public final class Core
 	 * Retrieves object list based on the given XPath query (synchronously).
 	 * @param context the context.
 	 * @param xpathFormat the XPath query to execute with %s for each param to escape.
-	 * @param amount maximum number of objects to retrieve. 
+	 * @param amount maximum number of objects to retrieve. If amount is 0, all objects will be retrieved.
 	 * @param offset index of first object to retrieve.
 	 * @param sort sorting of returned objects when retrieved from the database (e.g. <"Name", "ASC">, <"Age", "DESC">).
 	 * @param depth depth of the retrieval (0 is all attributes and association guids, 1 is also all attributes of 1-deep associations and 2-deep associaton guids etc.).
@@ -893,7 +893,7 @@ public final class Core
 	 * Retrieve raw data (IDataTable) using an OQL query (asynchronously).
 	 * @param context the context.
 	 * @param oqlQuery the OQL query to execute.
-	 * @param amount maximum number of objects to retrieve. 
+	 * @param amount maximum number of objects to retrieve. If amount is 0, all objects will be retrieved.
 	 * @param offset index of first object to retrieve.
 	 * @return the Future object.
 	 */
@@ -928,7 +928,7 @@ public final class Core
 	 * Retrieve raw data (IDataTable) using an OQL query (asynchronously).
 	 * @param context the context.
 	 * @param oqlQuery the OQL query to execute.
-	 * @param amount maximum number of objects to retrieve. 
+	 * @param amount maximum number of objects to retrieve. If amount is 0, all objects will be retrieved.
 	 * @param offset index of first object to retrieve.
 	 * @return the data table containing the raw data.
 	 */

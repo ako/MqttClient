@@ -125,7 +125,7 @@ public class FileDocument
 	/**
 	 * @return value of FileID
 	 */
-	public final Long getFileID()
+	public final java.lang.Long getFileID()
 	{
 		return getFileID(getContext());
 	}
@@ -134,16 +134,16 @@ public class FileDocument
 	 * @param context
 	 * @return value of FileID
 	 */
-	public final Long getFileID(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Long getFileID(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Long) getMendixObject().getValue(context, MemberNames.FileID.toString());
+		return (java.lang.Long) getMendixObject().getValue(context, MemberNames.FileID.toString());
 	}
 
 	/**
 	 * Set value of FileID
 	 * @param fileid
 	 */
-	public final void setFileID(Long fileid)
+	public final void setFileID(java.lang.Long fileid)
 	{
 		setFileID(getContext(), fileid);
 	}
@@ -153,7 +153,7 @@ public class FileDocument
 	 * @param context
 	 * @param fileid
 	 */
-	public final void setFileID(com.mendix.systemwideinterfaces.core.IContext context, Long fileid)
+	public final void setFileID(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Long fileid)
 	{
 		getMendixObject().setValue(context, MemberNames.FileID.toString(), fileid);
 	}
@@ -161,7 +161,7 @@ public class FileDocument
 	/**
 	 * @return value of Name
 	 */
-	public final String getName()
+	public final java.lang.String getName()
 	{
 		return getName(getContext());
 	}
@@ -170,16 +170,16 @@ public class FileDocument
 	 * @param context
 	 * @return value of Name
 	 */
-	public final String getName(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getName(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Name.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Name.toString());
 	}
 
 	/**
 	 * Set value of Name
 	 * @param name
 	 */
-	public final void setName(String name)
+	public final void setName(java.lang.String name)
 	{
 		setName(getContext(), name);
 	}
@@ -189,7 +189,7 @@ public class FileDocument
 	 * @param context
 	 * @param name
 	 */
-	public final void setName(com.mendix.systemwideinterfaces.core.IContext context, String name)
+	public final void setName(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String name)
 	{
 		getMendixObject().setValue(context, MemberNames.Name.toString(), name);
 	}
@@ -197,7 +197,7 @@ public class FileDocument
 	/**
 	 * @return value of DeleteAfterDownload
 	 */
-	public final Boolean getDeleteAfterDownload()
+	public final java.lang.Boolean getDeleteAfterDownload()
 	{
 		return getDeleteAfterDownload(getContext());
 	}
@@ -206,16 +206,16 @@ public class FileDocument
 	 * @param context
 	 * @return value of DeleteAfterDownload
 	 */
-	public final Boolean getDeleteAfterDownload(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Boolean getDeleteAfterDownload(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Boolean) getMendixObject().getValue(context, MemberNames.DeleteAfterDownload.toString());
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.DeleteAfterDownload.toString());
 	}
 
 	/**
 	 * Set value of DeleteAfterDownload
 	 * @param deleteafterdownload
 	 */
-	public final void setDeleteAfterDownload(Boolean deleteafterdownload)
+	public final void setDeleteAfterDownload(java.lang.Boolean deleteafterdownload)
 	{
 		setDeleteAfterDownload(getContext(), deleteafterdownload);
 	}
@@ -225,7 +225,7 @@ public class FileDocument
 	 * @param context
 	 * @param deleteafterdownload
 	 */
-	public final void setDeleteAfterDownload(com.mendix.systemwideinterfaces.core.IContext context, Boolean deleteafterdownload)
+	public final void setDeleteAfterDownload(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean deleteafterdownload)
 	{
 		getMendixObject().setValue(context, MemberNames.DeleteAfterDownload.toString(), deleteafterdownload);
 	}
@@ -264,7 +264,7 @@ public class FileDocument
 	/**
 	 * @return value of HasContents
 	 */
-	public final Boolean getHasContents()
+	public final java.lang.Boolean getHasContents()
 	{
 		return getHasContents(getContext());
 	}
@@ -273,16 +273,16 @@ public class FileDocument
 	 * @param context
 	 * @return value of HasContents
 	 */
-	public final Boolean getHasContents(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Boolean getHasContents(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Boolean) getMendixObject().getValue(context, MemberNames.HasContents.toString());
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.HasContents.toString());
 	}
 
 	/**
 	 * Set value of HasContents
 	 * @param hascontents
 	 */
-	public final void setHasContents(Boolean hascontents)
+	public final void setHasContents(java.lang.Boolean hascontents)
 	{
 		setHasContents(getContext(), hascontents);
 	}
@@ -292,7 +292,7 @@ public class FileDocument
 	 * @param context
 	 * @param hascontents
 	 */
-	public final void setHasContents(com.mendix.systemwideinterfaces.core.IContext context, Boolean hascontents)
+	public final void setHasContents(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean hascontents)
 	{
 		getMendixObject().setValue(context, MemberNames.HasContents.toString(), hascontents);
 	}

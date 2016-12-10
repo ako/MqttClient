@@ -14,20 +14,20 @@ import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 import mqttclient.impl.MqttConnector;
 
-public class MqttPublish extends CustomJavaAction<Boolean>
+public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 {
-	private String BrokerHost;
-	private Long BrokerPort;
-	private String Username;
-	private String Password;
-	private String TopicName;
-	private String Payload;
-	private String CA;
-	private String ClientCertificate;
-	private String ClientKey;
-	private String CertificatePassword;
+	private java.lang.String BrokerHost;
+	private java.lang.Long BrokerPort;
+	private java.lang.String Username;
+	private java.lang.String Password;
+	private java.lang.String TopicName;
+	private java.lang.String Payload;
+	private java.lang.String CA;
+	private java.lang.String ClientCertificate;
+	private java.lang.String ClientKey;
+	private java.lang.String CertificatePassword;
 
-	public MqttPublish(IContext context, String BrokerHost, Long BrokerPort, String Username, String Password, String TopicName, String Payload, String CA, String ClientCertificate, String ClientKey, String CertificatePassword)
+	public MqttPublish(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String Payload, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
@@ -43,7 +43,7 @@ public class MqttPublish extends CustomJavaAction<Boolean>
 	}
 
 	@Override
-	public Boolean executeAction() throws Exception
+	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
         MqttConnector handler = new MqttConnector(Core.getLogger("MqttConnector"));
@@ -60,7 +60,7 @@ public class MqttPublish extends CustomJavaAction<Boolean>
 	 * Returns a string representation of this action
 	 */
 	@Override
-	public String toString()
+	public java.lang.String toString()
 	{
 		return "MqttPublish";
 	}

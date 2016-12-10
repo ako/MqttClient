@@ -12,7 +12,7 @@
     </configurations>
     <dependencies>
         <!-- for the mqtt connector -->
-        <dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.+" conf="export->default"/>
+        <dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.1+" conf="export->default"/>
         <dependency org="org.bouncycastle" name="bcprov-jdk16" rev="1.46" conf="export->default"/>
         <dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.54" conf="export->default"/>
         <dependency org="com.google.guava" name="guava" rev="14.0.1" conf="export->default"/>

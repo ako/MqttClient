@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * Created by ako on 12-8-2016.
  */
-public class MxMqttCallback implements MqttCallback {
+public class MxMqttCallback implements MqttCallbackExtended {
     private ILogNode logger = null;
     private MqttClient client = null;
     private HashMap<String, MqttSubscription> subscriptions = null;
@@ -47,7 +47,8 @@ public class MxMqttCallback implements MqttCallback {
                 logger.info(String.format("Calling onMessage microflow: %s, %s", microflow, client.getClientId()));
                 final ImmutableMap map = ImmutableMap.of("Topic", topic, "Payload", new String(mqttMessage.getPayload()));
                 logger.info("Parameter map: " + map);
-                Core.execute(ctx, microflow, true, map);
+                //Core.execute(ctx, microflow, true, map);
+                Core.executeAsync(ctx, microflow, true, map);
             } else {
                 logger.error(String.format("Cannot find microflow for message received on topic %s", topic));
             }
@@ -79,5 +80,17 @@ public class MxMqttCallback implements MqttCallback {
         }
         logger.info("No subscription found for topic " + topic);
         return null;
+    }
+
+    @Override
+    public void connectComplete(boolean isReconnect, String serverUri) {
+        logger.info(String.format("connectComplete %s, %s", isReconnect, serverUri));
+        this.subscriptions.forEach((topic, subs) -> {
+            try {
+                client.subscribe(topic, 1);
+            } catch (MqttException e) {
+                logger.error(String.format("Reconnect failed for topic %s: %s", topic, e.getMessage()));
+            }
+        });
     }
 }

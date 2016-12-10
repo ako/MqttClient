@@ -120,7 +120,7 @@ public class MqttMessages
 	/**
 	 * @return value of Topic
 	 */
-	public final String getTopic()
+	public final java.lang.String getTopic()
 	{
 		return getTopic(getContext());
 	}
@@ -129,16 +129,16 @@ public class MqttMessages
 	 * @param context
 	 * @return value of Topic
 	 */
-	public final String getTopic(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getTopic(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Topic.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Topic.toString());
 	}
 
 	/**
 	 * Set value of Topic
 	 * @param topic
 	 */
-	public final void setTopic(String topic)
+	public final void setTopic(java.lang.String topic)
 	{
 		setTopic(getContext(), topic);
 	}
@@ -148,7 +148,7 @@ public class MqttMessages
 	 * @param context
 	 * @param topic
 	 */
-	public final void setTopic(com.mendix.systemwideinterfaces.core.IContext context, String topic)
+	public final void setTopic(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String topic)
 	{
 		getMendixObject().setValue(context, MemberNames.Topic.toString(), topic);
 	}
@@ -192,7 +192,7 @@ public class MqttMessages
 	/**
 	 * @return value of Payload
 	 */
-	public final String getPayload()
+	public final java.lang.String getPayload()
 	{
 		return getPayload(getContext());
 	}
@@ -201,16 +201,16 @@ public class MqttMessages
 	 * @param context
 	 * @return value of Payload
 	 */
-	public final String getPayload(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getPayload(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Payload.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Payload.toString());
 	}
 
 	/**
 	 * Set value of Payload
 	 * @param payload
 	 */
-	public final void setPayload(String payload)
+	public final void setPayload(java.lang.String payload)
 	{
 		setPayload(getContext(), payload);
 	}
@@ -220,7 +220,7 @@ public class MqttMessages
 	 * @param context
 	 * @param payload
 	 */
-	public final void setPayload(com.mendix.systemwideinterfaces.core.IContext context, String payload)
+	public final void setPayload(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String payload)
 	{
 		getMendixObject().setValue(context, MemberNames.Payload.toString(), payload);
 	}

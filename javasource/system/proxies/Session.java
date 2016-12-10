@@ -121,7 +121,7 @@ public class Session
 	/**
 	 * @return value of SessionId
 	 */
-	public final String getSessionId()
+	public final java.lang.String getSessionId()
 	{
 		return getSessionId(getContext());
 	}
@@ -130,16 +130,16 @@ public class Session
 	 * @param context
 	 * @return value of SessionId
 	 */
-	public final String getSessionId(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getSessionId(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.SessionId.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.SessionId.toString());
 	}
 
 	/**
 	 * Set value of SessionId
 	 * @param sessionid
 	 */
-	public final void setSessionId(String sessionid)
+	public final void setSessionId(java.lang.String sessionid)
 	{
 		setSessionId(getContext(), sessionid);
 	}
@@ -149,7 +149,7 @@ public class Session
 	 * @param context
 	 * @param sessionid
 	 */
-	public final void setSessionId(com.mendix.systemwideinterfaces.core.IContext context, String sessionid)
+	public final void setSessionId(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String sessionid)
 	{
 		getMendixObject().setValue(context, MemberNames.SessionId.toString(), sessionid);
 	}
@@ -157,7 +157,7 @@ public class Session
 	/**
 	 * @return value of CSRFToken
 	 */
-	public final String getCSRFToken()
+	public final java.lang.String getCSRFToken()
 	{
 		return getCSRFToken(getContext());
 	}
@@ -166,16 +166,16 @@ public class Session
 	 * @param context
 	 * @return value of CSRFToken
 	 */
-	public final String getCSRFToken(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getCSRFToken(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.CSRFToken.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.CSRFToken.toString());
 	}
 
 	/**
 	 * Set value of CSRFToken
 	 * @param csrftoken
 	 */
-	public final void setCSRFToken(String csrftoken)
+	public final void setCSRFToken(java.lang.String csrftoken)
 	{
 		setCSRFToken(getContext(), csrftoken);
 	}
@@ -185,7 +185,7 @@ public class Session
 	 * @param context
 	 * @param csrftoken
 	 */
-	public final void setCSRFToken(com.mendix.systemwideinterfaces.core.IContext context, String csrftoken)
+	public final void setCSRFToken(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String csrftoken)
 	{
 		getMendixObject().setValue(context, MemberNames.CSRFToken.toString(), csrftoken);
 	}

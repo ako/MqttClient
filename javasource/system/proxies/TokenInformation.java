@@ -122,7 +122,7 @@ public class TokenInformation
 	 * Set value of Token
 	 * @param token
 	 */
-	public final void setToken(String token)
+	public final void setToken(java.lang.String token)
 	{
 		setToken(getContext(), token);
 	}
@@ -132,7 +132,7 @@ public class TokenInformation
 	 * @param context
 	 * @param token
 	 */
-	public final void setToken(com.mendix.systemwideinterfaces.core.IContext context, String token)
+	public final void setToken(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String token)
 	{
 		getMendixObject().setValue(context, MemberNames.Token.toString(), token);
 	}
@@ -176,7 +176,7 @@ public class TokenInformation
 	/**
 	 * @return value of UserAgent
 	 */
-	public final String getUserAgent()
+	public final java.lang.String getUserAgent()
 	{
 		return getUserAgent(getContext());
 	}
@@ -185,16 +185,16 @@ public class TokenInformation
 	 * @param context
 	 * @return value of UserAgent
 	 */
-	public final String getUserAgent(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getUserAgent(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.UserAgent.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.UserAgent.toString());
 	}
 
 	/**
 	 * Set value of UserAgent
 	 * @param useragent
 	 */
-	public final void setUserAgent(String useragent)
+	public final void setUserAgent(java.lang.String useragent)
 	{
 		setUserAgent(getContext(), useragent);
 	}
@@ -204,7 +204,7 @@ public class TokenInformation
 	 * @param context
 	 * @param useragent
 	 */
-	public final void setUserAgent(com.mendix.systemwideinterfaces.core.IContext context, String useragent)
+	public final void setUserAgent(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String useragent)
 	{
 		getMendixObject().setValue(context, MemberNames.UserAgent.toString(), useragent);
 	}

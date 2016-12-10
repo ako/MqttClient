@@ -6,31 +6,31 @@ package communitycommons.proxies;
 
 public enum XSSPolicy
 {
-	TinyMCE(new String[][] { new String[] { "en_US", "TinyMCE" }, new String[] { "nl_NL", "TinyMCE" } }),
-	MySpace(new String[][] { new String[] { "en_US", "MySpace" }, new String[] { "nl_NL", "MySpace" } }),
-	eBay(new String[][] { new String[] { "en_US", "eBay" }, new String[] { "nl_NL", "eBay" } }),
-	Slashdot(new String[][] { new String[] { "en_US", "Slashdot" }, new String[] { "nl_NL", "Slashdot" } }),
-	anythinggoes(new String[][] { new String[] { "en_US", "Allow anything" }, new String[] { "nl_NL", "Alles toestaan" } }),
-	BootstrapRTE(new String[][] { new String[] { "en_US", "Bootstrap Rich Text Editor" }, new String[] { "nl_NL", "Bootstrap Rich Text Editor" } }),
-	BootstrapRTE_nolink(new String[][] { new String[] { "en_US", "Bootstrap Rich Text Editor no hyperlink" }, new String[] { "nl_NL", "Bootstrap Rich Text Editor no hyperlink" } });
+	TinyMCE(new java.lang.String[][] { new java.lang.String[] { "en_US", "TinyMCE" }, new java.lang.String[] { "nl_NL", "TinyMCE" } }),
+	MySpace(new java.lang.String[][] { new java.lang.String[] { "en_US", "MySpace" }, new java.lang.String[] { "nl_NL", "MySpace" } }),
+	eBay(new java.lang.String[][] { new java.lang.String[] { "en_US", "eBay" }, new java.lang.String[] { "nl_NL", "eBay" } }),
+	Slashdot(new java.lang.String[][] { new java.lang.String[] { "en_US", "Slashdot" }, new java.lang.String[] { "nl_NL", "Slashdot" } }),
+	anythinggoes(new java.lang.String[][] { new java.lang.String[] { "en_US", "Allow anything" }, new java.lang.String[] { "nl_NL", "Alles toestaan" } }),
+	BootstrapRTE(new java.lang.String[][] { new java.lang.String[] { "en_US", "Bootstrap Rich Text Editor" }, new java.lang.String[] { "nl_NL", "Bootstrap Rich Text Editor" } }),
+	BootstrapRTE_nolink(new java.lang.String[][] { new java.lang.String[] { "en_US", "Bootstrap Rich Text Editor no hyperlink" }, new java.lang.String[] { "nl_NL", "Bootstrap Rich Text Editor no hyperlink" } });
 
-	private java.util.Map<String,String> captions;
+	private java.util.Map<java.lang.String, java.lang.String> captions;
 
-	private XSSPolicy(String[][] captionStrings)
+	private XSSPolicy(java.lang.String[][] captionStrings)
 	{
-		this.captions = new java.util.HashMap<String,String>();
-		for (String[] captionString : captionStrings)
+		this.captions = new java.util.HashMap<java.lang.String, java.lang.String>();
+		for (java.lang.String[] captionString : captionStrings)
 			captions.put(captionString[0], captionString[1]);
 	}
 
-	public String getCaption(String languageCode)
+	public java.lang.String getCaption(java.lang.String languageCode)
 	{
 		if (captions.containsKey(languageCode))
 			return captions.get(languageCode);
 		return captions.get("en_US");
 	}
 
-	public String getCaption()
+	public java.lang.String getCaption()
 	{
 		return captions.get("en_US");
 	}

@@ -78,7 +78,7 @@ public class SoapFault extends system.proxies.Error
 	/**
 	 * @return value of Code
 	 */
-	public final String getCode()
+	public final java.lang.String getCode()
 	{
 		return getCode(getContext());
 	}
@@ -87,16 +87,16 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @return value of Code
 	 */
-	public final String getCode(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getCode(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Code.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Code.toString());
 	}
 
 	/**
 	 * Set value of Code
 	 * @param code
 	 */
-	public final void setCode(String code)
+	public final void setCode(java.lang.String code)
 	{
 		setCode(getContext(), code);
 	}
@@ -106,7 +106,7 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @param code
 	 */
-	public final void setCode(com.mendix.systemwideinterfaces.core.IContext context, String code)
+	public final void setCode(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String code)
 	{
 		getMendixObject().setValue(context, MemberNames.Code.toString(), code);
 	}
@@ -114,7 +114,7 @@ public class SoapFault extends system.proxies.Error
 	/**
 	 * @return value of Reason
 	 */
-	public final String getReason()
+	public final java.lang.String getReason()
 	{
 		return getReason(getContext());
 	}
@@ -123,16 +123,16 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @return value of Reason
 	 */
-	public final String getReason(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getReason(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Reason.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Reason.toString());
 	}
 
 	/**
 	 * Set value of Reason
 	 * @param reason
 	 */
-	public final void setReason(String reason)
+	public final void setReason(java.lang.String reason)
 	{
 		setReason(getContext(), reason);
 	}
@@ -142,7 +142,7 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @param reason
 	 */
-	public final void setReason(com.mendix.systemwideinterfaces.core.IContext context, String reason)
+	public final void setReason(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String reason)
 	{
 		getMendixObject().setValue(context, MemberNames.Reason.toString(), reason);
 	}
@@ -150,7 +150,7 @@ public class SoapFault extends system.proxies.Error
 	/**
 	 * @return value of Node
 	 */
-	public final String getNode()
+	public final java.lang.String getNode()
 	{
 		return getNode(getContext());
 	}
@@ -159,16 +159,16 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @return value of Node
 	 */
-	public final String getNode(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getNode(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Node.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Node.toString());
 	}
 
 	/**
 	 * Set value of Node
 	 * @param node
 	 */
-	public final void setNode(String node)
+	public final void setNode(java.lang.String node)
 	{
 		setNode(getContext(), node);
 	}
@@ -178,7 +178,7 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @param node
 	 */
-	public final void setNode(com.mendix.systemwideinterfaces.core.IContext context, String node)
+	public final void setNode(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String node)
 	{
 		getMendixObject().setValue(context, MemberNames.Node.toString(), node);
 	}
@@ -186,7 +186,7 @@ public class SoapFault extends system.proxies.Error
 	/**
 	 * @return value of Role
 	 */
-	public final String getRole()
+	public final java.lang.String getRole()
 	{
 		return getRole(getContext());
 	}
@@ -195,16 +195,16 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @return value of Role
 	 */
-	public final String getRole(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getRole(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Role.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Role.toString());
 	}
 
 	/**
 	 * Set value of Role
 	 * @param role
 	 */
-	public final void setRole(String role)
+	public final void setRole(java.lang.String role)
 	{
 		setRole(getContext(), role);
 	}
@@ -214,7 +214,7 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @param role
 	 */
-	public final void setRole(com.mendix.systemwideinterfaces.core.IContext context, String role)
+	public final void setRole(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String role)
 	{
 		getMendixObject().setValue(context, MemberNames.Role.toString(), role);
 	}
@@ -222,7 +222,7 @@ public class SoapFault extends system.proxies.Error
 	/**
 	 * @return value of Detail
 	 */
-	public final String getDetail()
+	public final java.lang.String getDetail()
 	{
 		return getDetail(getContext());
 	}
@@ -231,16 +231,16 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @return value of Detail
 	 */
-	public final String getDetail(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getDetail(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Detail.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Detail.toString());
 	}
 
 	/**
 	 * Set value of Detail
 	 * @param detail
 	 */
-	public final void setDetail(String detail)
+	public final void setDetail(java.lang.String detail)
 	{
 		setDetail(getContext(), detail);
 	}
@@ -250,7 +250,7 @@ public class SoapFault extends system.proxies.Error
 	 * @param context
 	 * @param detail
 	 */
-	public final void setDetail(com.mendix.systemwideinterfaces.core.IContext context, String detail)
+	public final void setDetail(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String detail)
 	{
 		getMendixObject().setValue(context, MemberNames.Detail.toString(), detail);
 	}

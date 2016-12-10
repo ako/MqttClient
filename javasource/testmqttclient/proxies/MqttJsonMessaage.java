@@ -122,7 +122,7 @@ public class MqttJsonMessaage
 	/**
 	 * @return value of Test
 	 */
-	public final String getTest()
+	public final java.lang.String getTest()
 	{
 		return getTest(getContext());
 	}
@@ -131,16 +131,16 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @return value of Test
 	 */
-	public final String getTest(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getTest(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Test.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Test.toString());
 	}
 
 	/**
 	 * Set value of Test
 	 * @param test
 	 */
-	public final void setTest(String test)
+	public final void setTest(java.lang.String test)
 	{
 		setTest(getContext(), test);
 	}
@@ -150,7 +150,7 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @param test
 	 */
-	public final void setTest(com.mendix.systemwideinterfaces.core.IContext context, String test)
+	public final void setTest(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String test)
 	{
 		getMendixObject().setValue(context, MemberNames.Test.toString(), test);
 	}
@@ -158,7 +158,7 @@ public class MqttJsonMessaage
 	/**
 	 * @return value of Topic
 	 */
-	public final String getTopic()
+	public final java.lang.String getTopic()
 	{
 		return getTopic(getContext());
 	}
@@ -167,16 +167,16 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @return value of Topic
 	 */
-	public final String getTopic(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getTopic(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Topic.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Topic.toString());
 	}
 
 	/**
 	 * Set value of Topic
 	 * @param topic
 	 */
-	public final void setTopic(String topic)
+	public final void setTopic(java.lang.String topic)
 	{
 		setTopic(getContext(), topic);
 	}
@@ -186,7 +186,7 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @param topic
 	 */
-	public final void setTopic(com.mendix.systemwideinterfaces.core.IContext context, String topic)
+	public final void setTopic(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String topic)
 	{
 		getMendixObject().setValue(context, MemberNames.Topic.toString(), topic);
 	}
@@ -194,7 +194,7 @@ public class MqttJsonMessaage
 	/**
 	 * @return value of Index
 	 */
-	public final Integer getIndex()
+	public final java.lang.Integer getIndex()
 	{
 		return getIndex(getContext());
 	}
@@ -203,16 +203,16 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @return value of Index
 	 */
-	public final Integer getIndex(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Integer getIndex(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Integer) getMendixObject().getValue(context, MemberNames.Index.toString());
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.Index.toString());
 	}
 
 	/**
 	 * Set value of Index
 	 * @param index
 	 */
-	public final void setIndex(Integer index)
+	public final void setIndex(java.lang.Integer index)
 	{
 		setIndex(getContext(), index);
 	}
@@ -222,7 +222,7 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @param index
 	 */
-	public final void setIndex(com.mendix.systemwideinterfaces.core.IContext context, Integer index)
+	public final void setIndex(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer index)
 	{
 		getMendixObject().setValue(context, MemberNames.Index.toString(), index);
 	}
@@ -266,7 +266,7 @@ public class MqttJsonMessaage
 	/**
 	 * @return value of MqttTopic
 	 */
-	public final String getMqttTopic()
+	public final java.lang.String getMqttTopic()
 	{
 		return getMqttTopic(getContext());
 	}
@@ -275,16 +275,16 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @return value of MqttTopic
 	 */
-	public final String getMqttTopic(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getMqttTopic(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.MqttTopic.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.MqttTopic.toString());
 	}
 
 	/**
 	 * Set value of MqttTopic
 	 * @param mqtttopic
 	 */
-	public final void setMqttTopic(String mqtttopic)
+	public final void setMqttTopic(java.lang.String mqtttopic)
 	{
 		setMqttTopic(getContext(), mqtttopic);
 	}
@@ -294,7 +294,7 @@ public class MqttJsonMessaage
 	 * @param context
 	 * @param mqtttopic
 	 */
-	public final void setMqttTopic(com.mendix.systemwideinterfaces.core.IContext context, String mqtttopic)
+	public final void setMqttTopic(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String mqtttopic)
 	{
 		getMendixObject().setValue(context, MemberNames.MqttTopic.toString(), mqtttopic);
 	}

@@ -122,7 +122,7 @@ public class XASInstance
 	/**
 	 * @return value of XASId
 	 */
-	public final String getXASId()
+	public final java.lang.String getXASId()
 	{
 		return getXASId(getContext());
 	}
@@ -131,16 +131,16 @@ public class XASInstance
 	 * @param context
 	 * @return value of XASId
 	 */
-	public final String getXASId(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getXASId(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.XASId.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.XASId.toString());
 	}
 
 	/**
 	 * Set value of XASId
 	 * @param xasid
 	 */
-	public final void setXASId(String xasid)
+	public final void setXASId(java.lang.String xasid)
 	{
 		setXASId(getContext(), xasid);
 	}
@@ -150,7 +150,7 @@ public class XASInstance
 	 * @param context
 	 * @param xasid
 	 */
-	public final void setXASId(com.mendix.systemwideinterfaces.core.IContext context, String xasid)
+	public final void setXASId(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xasid)
 	{
 		getMendixObject().setValue(context, MemberNames.XASId.toString(), xasid);
 	}
@@ -194,7 +194,7 @@ public class XASInstance
 	/**
 	 * @return value of AllowedNumberOfConcurrentUsers
 	 */
-	public final Integer getAllowedNumberOfConcurrentUsers()
+	public final java.lang.Integer getAllowedNumberOfConcurrentUsers()
 	{
 		return getAllowedNumberOfConcurrentUsers(getContext());
 	}
@@ -203,16 +203,16 @@ public class XASInstance
 	 * @param context
 	 * @return value of AllowedNumberOfConcurrentUsers
 	 */
-	public final Integer getAllowedNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Integer getAllowedNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Integer) getMendixObject().getValue(context, MemberNames.AllowedNumberOfConcurrentUsers.toString());
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.AllowedNumberOfConcurrentUsers.toString());
 	}
 
 	/**
 	 * Set value of AllowedNumberOfConcurrentUsers
 	 * @param allowednumberofconcurrentusers
 	 */
-	public final void setAllowedNumberOfConcurrentUsers(Integer allowednumberofconcurrentusers)
+	public final void setAllowedNumberOfConcurrentUsers(java.lang.Integer allowednumberofconcurrentusers)
 	{
 		setAllowedNumberOfConcurrentUsers(getContext(), allowednumberofconcurrentusers);
 	}
@@ -222,7 +222,7 @@ public class XASInstance
 	 * @param context
 	 * @param allowednumberofconcurrentusers
 	 */
-	public final void setAllowedNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context, Integer allowednumberofconcurrentusers)
+	public final void setAllowedNumberOfConcurrentUsers(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer allowednumberofconcurrentusers)
 	{
 		getMendixObject().setValue(context, MemberNames.AllowedNumberOfConcurrentUsers.toString(), allowednumberofconcurrentusers);
 	}
@@ -230,7 +230,7 @@ public class XASInstance
 	/**
 	 * @return value of PartnerName
 	 */
-	public final String getPartnerName()
+	public final java.lang.String getPartnerName()
 	{
 		return getPartnerName(getContext());
 	}
@@ -239,16 +239,16 @@ public class XASInstance
 	 * @param context
 	 * @return value of PartnerName
 	 */
-	public final String getPartnerName(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getPartnerName(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.PartnerName.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.PartnerName.toString());
 	}
 
 	/**
 	 * Set value of PartnerName
 	 * @param partnername
 	 */
-	public final void setPartnerName(String partnername)
+	public final void setPartnerName(java.lang.String partnername)
 	{
 		setPartnerName(getContext(), partnername);
 	}
@@ -258,7 +258,7 @@ public class XASInstance
 	 * @param context
 	 * @param partnername
 	 */
-	public final void setPartnerName(com.mendix.systemwideinterfaces.core.IContext context, String partnername)
+	public final void setPartnerName(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String partnername)
 	{
 		getMendixObject().setValue(context, MemberNames.PartnerName.toString(), partnername);
 	}
@@ -266,7 +266,7 @@ public class XASInstance
 	/**
 	 * @return value of CustomerName
 	 */
-	public final String getCustomerName()
+	public final java.lang.String getCustomerName()
 	{
 		return getCustomerName(getContext());
 	}
@@ -275,16 +275,16 @@ public class XASInstance
 	 * @param context
 	 * @return value of CustomerName
 	 */
-	public final String getCustomerName(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getCustomerName(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.CustomerName.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.CustomerName.toString());
 	}
 
 	/**
 	 * Set value of CustomerName
 	 * @param customername
 	 */
-	public final void setCustomerName(String customername)
+	public final void setCustomerName(java.lang.String customername)
 	{
 		setCustomerName(getContext(), customername);
 	}
@@ -294,7 +294,7 @@ public class XASInstance
 	 * @param context
 	 * @param customername
 	 */
-	public final void setCustomerName(com.mendix.systemwideinterfaces.core.IContext context, String customername)
+	public final void setCustomerName(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String customername)
 	{
 		getMendixObject().setValue(context, MemberNames.CustomerName.toString(), customername);
 	}

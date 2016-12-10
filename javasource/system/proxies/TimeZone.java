@@ -120,7 +120,7 @@ public class TimeZone
 	/**
 	 * @return value of Code
 	 */
-	public final String getCode()
+	public final java.lang.String getCode()
 	{
 		return getCode(getContext());
 	}
@@ -129,16 +129,16 @@ public class TimeZone
 	 * @param context
 	 * @return value of Code
 	 */
-	public final String getCode(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getCode(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Code.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Code.toString());
 	}
 
 	/**
 	 * Set value of Code
 	 * @param code
 	 */
-	public final void setCode(String code)
+	public final void setCode(java.lang.String code)
 	{
 		setCode(getContext(), code);
 	}
@@ -148,7 +148,7 @@ public class TimeZone
 	 * @param context
 	 * @param code
 	 */
-	public final void setCode(com.mendix.systemwideinterfaces.core.IContext context, String code)
+	public final void setCode(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String code)
 	{
 		getMendixObject().setValue(context, MemberNames.Code.toString(), code);
 	}
@@ -156,7 +156,7 @@ public class TimeZone
 	/**
 	 * @return value of Description
 	 */
-	public final String getDescription()
+	public final java.lang.String getDescription()
 	{
 		return getDescription(getContext());
 	}
@@ -165,16 +165,16 @@ public class TimeZone
 	 * @param context
 	 * @return value of Description
 	 */
-	public final String getDescription(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getDescription(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Description.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Description.toString());
 	}
 
 	/**
 	 * Set value of Description
 	 * @param description
 	 */
-	public final void setDescription(String description)
+	public final void setDescription(java.lang.String description)
 	{
 		setDescription(getContext(), description);
 	}
@@ -184,7 +184,7 @@ public class TimeZone
 	 * @param context
 	 * @param description
 	 */
-	public final void setDescription(com.mendix.systemwideinterfaces.core.IContext context, String description)
+	public final void setDescription(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String description)
 	{
 		getMendixObject().setValue(context, MemberNames.Description.toString(), description);
 	}
@@ -192,7 +192,7 @@ public class TimeZone
 	/**
 	 * @return value of RawOffset
 	 */
-	public final Integer getRawOffset()
+	public final java.lang.Integer getRawOffset()
 	{
 		return getRawOffset(getContext());
 	}
@@ -201,16 +201,16 @@ public class TimeZone
 	 * @param context
 	 * @return value of RawOffset
 	 */
-	public final Integer getRawOffset(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Integer getRawOffset(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Integer) getMendixObject().getValue(context, MemberNames.RawOffset.toString());
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.RawOffset.toString());
 	}
 
 	/**
 	 * Set value of RawOffset
 	 * @param rawoffset
 	 */
-	public final void setRawOffset(Integer rawoffset)
+	public final void setRawOffset(java.lang.Integer rawoffset)
 	{
 		setRawOffset(getContext(), rawoffset);
 	}
@@ -220,7 +220,7 @@ public class TimeZone
 	 * @param context
 	 * @param rawoffset
 	 */
-	public final void setRawOffset(com.mendix.systemwideinterfaces.core.IContext context, Integer rawoffset)
+	public final void setRawOffset(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer rawoffset)
 	{
 		getMendixObject().setValue(context, MemberNames.RawOffset.toString(), rawoffset);
 	}

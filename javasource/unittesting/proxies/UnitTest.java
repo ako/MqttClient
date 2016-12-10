@@ -126,7 +126,7 @@ public class UnitTest
 	/**
 	 * @return value of Name
 	 */
-	public final String getName()
+	public final java.lang.String getName()
 	{
 		return getName(getContext());
 	}
@@ -135,16 +135,16 @@ public class UnitTest
 	 * @param context
 	 * @return value of Name
 	 */
-	public final String getName(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getName(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Name.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Name.toString());
 	}
 
 	/**
 	 * Set value of Name
 	 * @param name
 	 */
-	public final void setName(String name)
+	public final void setName(java.lang.String name)
 	{
 		setName(getContext(), name);
 	}
@@ -154,7 +154,7 @@ public class UnitTest
 	 * @param context
 	 * @param name
 	 */
-	public final void setName(com.mendix.systemwideinterfaces.core.IContext context, String name)
+	public final void setName(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String name)
 	{
 		getMendixObject().setValue(context, MemberNames.Name.toString(), name);
 	}
@@ -206,7 +206,7 @@ public class UnitTest
 	/**
 	 * @return value of ResultMessage
 	 */
-	public final String getResultMessage()
+	public final java.lang.String getResultMessage()
 	{
 		return getResultMessage(getContext());
 	}
@@ -215,16 +215,16 @@ public class UnitTest
 	 * @param context
 	 * @return value of ResultMessage
 	 */
-	public final String getResultMessage(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getResultMessage(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.ResultMessage.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.ResultMessage.toString());
 	}
 
 	/**
 	 * Set value of ResultMessage
 	 * @param resultmessage
 	 */
-	public final void setResultMessage(String resultmessage)
+	public final void setResultMessage(java.lang.String resultmessage)
 	{
 		setResultMessage(getContext(), resultmessage);
 	}
@@ -234,7 +234,7 @@ public class UnitTest
 	 * @param context
 	 * @param resultmessage
 	 */
-	public final void setResultMessage(com.mendix.systemwideinterfaces.core.IContext context, String resultmessage)
+	public final void setResultMessage(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String resultmessage)
 	{
 		getMendixObject().setValue(context, MemberNames.ResultMessage.toString(), resultmessage);
 	}
@@ -242,7 +242,7 @@ public class UnitTest
 	/**
 	 * @return value of LastStep
 	 */
-	public final String getLastStep()
+	public final java.lang.String getLastStep()
 	{
 		return getLastStep(getContext());
 	}
@@ -251,16 +251,16 @@ public class UnitTest
 	 * @param context
 	 * @return value of LastStep
 	 */
-	public final String getLastStep(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getLastStep(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.LastStep.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.LastStep.toString());
 	}
 
 	/**
 	 * Set value of LastStep
 	 * @param laststep
 	 */
-	public final void setLastStep(String laststep)
+	public final void setLastStep(java.lang.String laststep)
 	{
 		setLastStep(getContext(), laststep);
 	}
@@ -270,7 +270,7 @@ public class UnitTest
 	 * @param context
 	 * @param laststep
 	 */
-	public final void setLastStep(com.mendix.systemwideinterfaces.core.IContext context, String laststep)
+	public final void setLastStep(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String laststep)
 	{
 		getMendixObject().setValue(context, MemberNames.LastStep.toString(), laststep);
 	}
@@ -314,7 +314,7 @@ public class UnitTest
 	/**
 	 * @return value of IsMf
 	 */
-	public final Boolean getIsMf()
+	public final java.lang.Boolean getIsMf()
 	{
 		return getIsMf(getContext());
 	}
@@ -323,16 +323,16 @@ public class UnitTest
 	 * @param context
 	 * @return value of IsMf
 	 */
-	public final Boolean getIsMf(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Boolean getIsMf(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Boolean) getMendixObject().getValue(context, MemberNames.IsMf.toString());
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.IsMf.toString());
 	}
 
 	/**
 	 * Set value of IsMf
 	 * @param ismf
 	 */
-	public final void setIsMf(Boolean ismf)
+	public final void setIsMf(java.lang.Boolean ismf)
 	{
 		setIsMf(getContext(), ismf);
 	}
@@ -342,7 +342,7 @@ public class UnitTest
 	 * @param context
 	 * @param ismf
 	 */
-	public final void setIsMf(com.mendix.systemwideinterfaces.core.IContext context, Boolean ismf)
+	public final void setIsMf(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean ismf)
 	{
 		getMendixObject().setValue(context, MemberNames.IsMf.toString(), ismf);
 	}
@@ -350,7 +350,7 @@ public class UnitTest
 	/**
 	 * @return value of ReadableTime
 	 */
-	public final String getReadableTime()
+	public final java.lang.String getReadableTime()
 	{
 		return getReadableTime(getContext());
 	}
@@ -359,16 +359,16 @@ public class UnitTest
 	 * @param context
 	 * @return value of ReadableTime
 	 */
-	public final String getReadableTime(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getReadableTime(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.ReadableTime.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.ReadableTime.toString());
 	}
 
 	/**
 	 * Set value of ReadableTime
 	 * @param readabletime
 	 */
-	public final void setReadableTime(String readabletime)
+	public final void setReadableTime(java.lang.String readabletime)
 	{
 		setReadableTime(getContext(), readabletime);
 	}
@@ -378,7 +378,7 @@ public class UnitTest
 	 * @param context
 	 * @param readabletime
 	 */
-	public final void setReadableTime(com.mendix.systemwideinterfaces.core.IContext context, String readabletime)
+	public final void setReadableTime(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String readabletime)
 	{
 		getMendixObject().setValue(context, MemberNames.ReadableTime.toString(), readabletime);
 	}
@@ -386,7 +386,7 @@ public class UnitTest
 	/**
 	 * @return value of _dirty
 	 */
-	public final Boolean get_dirty()
+	public final java.lang.Boolean get_dirty()
 	{
 		return get_dirty(getContext());
 	}
@@ -395,16 +395,16 @@ public class UnitTest
 	 * @param context
 	 * @return value of _dirty
 	 */
-	public final Boolean get_dirty(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Boolean get_dirty(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Boolean) getMendixObject().getValue(context, MemberNames._dirty.toString());
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames._dirty.toString());
 	}
 
 	/**
 	 * Set value of _dirty
 	 * @param _dirty
 	 */
-	public final void set_dirty(Boolean _dirty)
+	public final void set_dirty(java.lang.Boolean _dirty)
 	{
 		set_dirty(getContext(), _dirty);
 	}
@@ -414,7 +414,7 @@ public class UnitTest
 	 * @param context
 	 * @param _dirty
 	 */
-	public final void set_dirty(com.mendix.systemwideinterfaces.core.IContext context, Boolean _dirty)
+	public final void set_dirty(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean _dirty)
 	{
 		getMendixObject().setValue(context, MemberNames._dirty.toString(), _dirty);
 	}

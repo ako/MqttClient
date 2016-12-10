@@ -124,7 +124,7 @@ public class TestSuite
 	/**
 	 * @return value of Module
 	 */
-	public final String getModule()
+	public final java.lang.String getModule()
 	{
 		return getModule(getContext());
 	}
@@ -133,16 +133,16 @@ public class TestSuite
 	 * @param context
 	 * @return value of Module
 	 */
-	public final String getModule(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getModule(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (String) getMendixObject().getValue(context, MemberNames.Module.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Module.toString());
 	}
 
 	/**
 	 * Set value of Module
 	 * @param module
 	 */
-	public final void setModule(String module)
+	public final void setModule(java.lang.String module)
 	{
 		setModule(getContext(), module);
 	}
@@ -152,7 +152,7 @@ public class TestSuite
 	 * @param context
 	 * @param module
 	 */
-	public final void setModule(com.mendix.systemwideinterfaces.core.IContext context, String module)
+	public final void setModule(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String module)
 	{
 		getMendixObject().setValue(context, MemberNames.Module.toString(), module);
 	}
@@ -196,7 +196,7 @@ public class TestSuite
 	/**
 	 * @return value of LastRunTime
 	 */
-	public final Long getLastRunTime()
+	public final java.lang.Long getLastRunTime()
 	{
 		return getLastRunTime(getContext());
 	}
@@ -205,16 +205,16 @@ public class TestSuite
 	 * @param context
 	 * @return value of LastRunTime
 	 */
-	public final Long getLastRunTime(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Long getLastRunTime(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Long) getMendixObject().getValue(context, MemberNames.LastRunTime.toString());
+		return (java.lang.Long) getMendixObject().getValue(context, MemberNames.LastRunTime.toString());
 	}
 
 	/**
 	 * Set value of LastRunTime
 	 * @param lastruntime
 	 */
-	public final void setLastRunTime(Long lastruntime)
+	public final void setLastRunTime(java.lang.Long lastruntime)
 	{
 		setLastRunTime(getContext(), lastruntime);
 	}
@@ -224,7 +224,7 @@ public class TestSuite
 	 * @param context
 	 * @param lastruntime
 	 */
-	public final void setLastRunTime(com.mendix.systemwideinterfaces.core.IContext context, Long lastruntime)
+	public final void setLastRunTime(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Long lastruntime)
 	{
 		getMendixObject().setValue(context, MemberNames.LastRunTime.toString(), lastruntime);
 	}
@@ -232,7 +232,7 @@ public class TestSuite
 	/**
 	 * @return value of TestCount
 	 */
-	public final Long getTestCount()
+	public final java.lang.Long getTestCount()
 	{
 		return getTestCount(getContext());
 	}
@@ -241,16 +241,16 @@ public class TestSuite
 	 * @param context
 	 * @return value of TestCount
 	 */
-	public final Long getTestCount(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Long getTestCount(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Long) getMendixObject().getValue(context, MemberNames.TestCount.toString());
+		return (java.lang.Long) getMendixObject().getValue(context, MemberNames.TestCount.toString());
 	}
 
 	/**
 	 * Set value of TestCount
 	 * @param testcount
 	 */
-	public final void setTestCount(Long testcount)
+	public final void setTestCount(java.lang.Long testcount)
 	{
 		setTestCount(getContext(), testcount);
 	}
@@ -260,7 +260,7 @@ public class TestSuite
 	 * @param context
 	 * @param testcount
 	 */
-	public final void setTestCount(com.mendix.systemwideinterfaces.core.IContext context, Long testcount)
+	public final void setTestCount(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Long testcount)
 	{
 		getMendixObject().setValue(context, MemberNames.TestCount.toString(), testcount);
 	}
@@ -268,7 +268,7 @@ public class TestSuite
 	/**
 	 * @return value of TestFailedCount
 	 */
-	public final Long getTestFailedCount()
+	public final java.lang.Long getTestFailedCount()
 	{
 		return getTestFailedCount(getContext());
 	}
@@ -277,16 +277,16 @@ public class TestSuite
 	 * @param context
 	 * @return value of TestFailedCount
 	 */
-	public final Long getTestFailedCount(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Long getTestFailedCount(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Long) getMendixObject().getValue(context, MemberNames.TestFailedCount.toString());
+		return (java.lang.Long) getMendixObject().getValue(context, MemberNames.TestFailedCount.toString());
 	}
 
 	/**
 	 * Set value of TestFailedCount
 	 * @param testfailedcount
 	 */
-	public final void setTestFailedCount(Long testfailedcount)
+	public final void setTestFailedCount(java.lang.Long testfailedcount)
 	{
 		setTestFailedCount(getContext(), testfailedcount);
 	}
@@ -296,7 +296,7 @@ public class TestSuite
 	 * @param context
 	 * @param testfailedcount
 	 */
-	public final void setTestFailedCount(com.mendix.systemwideinterfaces.core.IContext context, Long testfailedcount)
+	public final void setTestFailedCount(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Long testfailedcount)
 	{
 		getMendixObject().setValue(context, MemberNames.TestFailedCount.toString(), testfailedcount);
 	}
@@ -304,7 +304,7 @@ public class TestSuite
 	/**
 	 * @return value of AutoRollbackMFs
 	 */
-	public final Boolean getAutoRollbackMFs()
+	public final java.lang.Boolean getAutoRollbackMFs()
 	{
 		return getAutoRollbackMFs(getContext());
 	}
@@ -313,16 +313,16 @@ public class TestSuite
 	 * @param context
 	 * @return value of AutoRollbackMFs
 	 */
-	public final Boolean getAutoRollbackMFs(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.Boolean getAutoRollbackMFs(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (Boolean) getMendixObject().getValue(context, MemberNames.AutoRollbackMFs.toString());
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.AutoRollbackMFs.toString());
 	}
 
 	/**
 	 * Set value of AutoRollbackMFs
 	 * @param autorollbackmfs
 	 */
-	public final void setAutoRollbackMFs(Boolean autorollbackmfs)
+	public final void setAutoRollbackMFs(java.lang.Boolean autorollbackmfs)
 	{
 		setAutoRollbackMFs(getContext(), autorollbackmfs);
 	}
@@ -332,7 +332,7 @@ public class TestSuite
 	 * @param context
 	 * @param autorollbackmfs
 	 */
-	public final void setAutoRollbackMFs(com.mendix.systemwideinterfaces.core.IContext context, Boolean autorollbackmfs)
+	public final void setAutoRollbackMFs(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean autorollbackmfs)
 	{
 		getMendixObject().setValue(context, MemberNames.AutoRollbackMFs.toString(), autorollbackmfs);
 	}
