@@ -21,7 +21,7 @@ folder of your app. When subscribing or publishing a message specify their locat
 
 ## Usage with TTN
 
-For TTN you can leave the certifice info empty, instead provide username and password.
+For TTN you can leave the certificate info empty, instead provide username and password.
 
 Microflow to subscribe to an MQTT topic:
 
@@ -35,6 +35,7 @@ Microflow to handled messages received:
 
  ![][12]
 
+More info can be found here: [Using Mendix with TTN][14]
 ## Development
 
 Java dependencies are managed using Apache Ivy. There are two configuration:
@@ -50,14 +51,16 @@ included in the connector mpk.
 
 ## Version history
 
-* 0.9 - 2016-08-13 - initial release
+* 1.0 - 2016-08-13 - initial release
   * Implementation
   * Fix for subscribing to multiple topics with different microflows
   * Fix to ensure unique client id
-* 0.9.1 - 2016-12-11 - reconnect
+* 1.1 - 2016-12-11 - reconnect
   * Resubscribe on reconnect
   * Upgrade to mendix 6.10.0
-
+  * Use microflow parameter type for subscription onMessageMicroflow
+  * More TTN documentation
+  
  [1]: http://mqtt.org/
  [2]: http://mosquitto.org/
  [3]: http://www.eclipse.org/paho/
@@ -67,7 +70,8 @@ included in the connector mpk.
  [7]: https://staging.thethingsnetwork.org/wiki/Backend/Security
  [8]: https://staging.thethingsnetwork.org/wiki/Backend/ttnctl/QuickStart
  [9]: docs/images/mqtt-toolbox.png
- [10]: docs/images/mqtt-subscribe-action.png
- [11]: docs/images/mqtt-subscribe-ttn.png
- [12]: docs/images/mqtt-ttn-on-message-mf.png
+ [10]: docs/images/ttn-subscribe.png
+ [11]: docs/images/ttn-subscribe-details.png
+ [12]: docs/images/ttn-callback-microflow.png
  [13]: license.txt
+ [14]: docs/blogpost-ttn-mqtt-mendix.md

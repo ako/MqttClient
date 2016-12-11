@@ -87,6 +87,7 @@ public class MxMqttCallback implements MqttCallbackExtended {
         logger.info(String.format("connectComplete %s, %s", isReconnect, serverUri));
         this.subscriptions.forEach((topic, subs) -> {
             try {
+                logger.info(String.format("Resubscribing microflow %s to topic %s (%s)", subs.getOnMessageMicroflow(), topic, subs.getTopic()));
                 client.subscribe(topic, 1);
             } catch (MqttException e) {
                 logger.error(String.format("Reconnect failed for topic %s: %s", topic, e.getMessage()));
