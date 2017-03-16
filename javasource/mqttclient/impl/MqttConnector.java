@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Created by ako on 1/9/2016.
+ * Edited by simo101 on 16/03/2017
  */
 public class MqttConnector {
     private static Map<String, MqttConnection> mqttHandlers;
@@ -25,15 +26,40 @@ public class MqttConnector {
     }
 
     public void subscribe(String brokerHost, Long brokerPort, String topicName, String onMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
-        logger.info("MqttConnector.subscribe");
+        logger.info("MqttConnector.subscribe");       
         MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
-        connection.subscribe(topicName, onMessageMicroflow);
+        try{
+      	  connection.subscribe(topicName, onMessageMicroflow);
+      }catch(MqttException exception){
+      	if(exception.getReasonCode() == MqttException.REASON_CODE_CLIENT_NOT_CONNECTED){
+      		connection.reconnect();
+      		connection.subscribe(topicName, onMessageMicroflow);
+      	}else{
+      		logger.error(exception);
+      		throw exception;
+      	}
+      	
+      }
+        
+        
+        
     }
 
     public void publish(String brokerHost, Long brokerPort, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
-        logger.info("MqttConnector.publish");
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
-        connection.publish(topicName, message);
+    	logger.info("MqttConnector.publish");
+    	MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
+        try{
+        	connection.publish(topicName, message);
+        }catch(MqttException exception){
+        	if(exception.getReasonCode() == MqttException.REASON_CODE_CLIENT_NOT_CONNECTED){
+        		connection.reconnect();
+        		connection.publish(topicName, message);
+        	}else{
+        		logger.error(exception);
+        		throw exception;
+        	}
+        	
+        }
     }
 
     private MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
@@ -72,6 +98,9 @@ public class MqttConnector {
         private ILogNode logger;
         private MqttClient client;
         private HashMap<String, MqttSubscription> subscriptions = new HashMap<>();
+        private MqttConnectOptions connOpts;
+        private MemoryPersistence persistence;
+        private String broker;
 
         public MqttConnection(ILogNode logger, String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
             logger.info("new MqttConnection");
@@ -84,8 +113,8 @@ public class MqttConnector {
             logger.info("new MqttConnection client id " + clientId);
 
             boolean useSsl = (ClientCertificate != null && !ClientCertificate.equals(""));
-            String broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
-            MqttConnectOptions connOpts = new MqttConnectOptions();
+            broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
+            connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
             connOpts.setAutomaticReconnect(true);
 
@@ -125,7 +154,7 @@ public class MqttConnector {
                 }
             }
 
-            MemoryPersistence persistence = new MemoryPersistence();
+            persistence = new MemoryPersistence();
 
             try {
                 this.client = new MqttClient(broker, clientId, persistence);
@@ -192,5 +221,33 @@ public class MqttConnector {
                 throw e;
             }
         }
+        
+        public void reconnect() throws Exception{
+          	 try {
+                   logger.info("Reconnecting to broker: " + broker);
+                   client.connect(connOpts);
+                   logger.info("Connected");
+               } catch (Exception e) {
+                   logger.error(e);
+                   throw e;
+               }
+          }
+          
+          public void disconnect() throws Exception{
+         	 try {
+                  logger.info("Disconnecting to broker: " + broker);
+                  client.disconnect();
+                  logger.info("Disconnected");
+              } catch (Exception e) {
+                  logger.error(e);
+                  throw e;
+              }
+         }
+         public boolean isConnected(){
+       	  return client.isConnected();
+         }
+        
+        
+        
     }
 }
