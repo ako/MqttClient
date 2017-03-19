@@ -84,48 +84,72 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static void testAwsIotSubscribe(IContext context)
+	public static void test_AwsIotSubscribe(IContext context)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
-			Core.execute(context, "TestMqttClient.TestAwsIotSubscribe", params);
+			Core.execute(context, "TestMqttClient.Test_AwsIotSubscribe", params);
 		}
 		catch (CoreException e)
 		{
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static void testSubscribeTwoMosquittoImportTopics(IContext context)
+	public static void test_IBMPublish(IContext context)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
-			Core.execute(context, "TestMqttClient.TestSubscribeTwoMosquittoImportTopics", params);
+			Core.execute(context, "TestMqttClient.Test_IBMPublish", params);
 		}
 		catch (CoreException e)
 		{
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static void testSubscribeTwoMosquittoTopics(IContext context)
+	public static void test_IBMSubscribe(IContext context)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
-			Core.execute(context, "TestMqttClient.TestSubscribeTwoMosquittoTopics", params);
+			Core.execute(context, "TestMqttClient.Test_IBMSubscribe", params);
 		}
 		catch (CoreException e)
 		{
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static void testTTNSubscribe(IContext context)
+	public static void test_SubscribeTwoMosquittoImportTopics(IContext context)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
-			Core.execute(context, "TestMqttClient.TestTTNSubscribe", params);
+			Core.execute(context, "TestMqttClient.Test_SubscribeTwoMosquittoImportTopics", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void test_SubscribeTwoMosquittoTopics(IContext context)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			Core.execute(context, "TestMqttClient.Test_SubscribeTwoMosquittoTopics", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void test_TTNSubscribe(IContext context)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			Core.execute(context, "TestMqttClient.Test_TTNSubscribe", params);
 		}
 		catch (CoreException e)
 		{
