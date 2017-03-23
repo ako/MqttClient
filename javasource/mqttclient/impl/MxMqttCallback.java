@@ -29,7 +29,7 @@ public class MxMqttCallback implements MqttCallbackExtended {
         logger.info(String.format("connectionLost: %s, %s", throwable.getMessage(), client.getClientId()));
         logger.warn(throwable);
         try {
-            client.connect();
+            client.reconnect();
         } catch (MqttException e) {
             logger.error(e);
         }

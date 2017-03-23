@@ -26,7 +26,9 @@ public class TestSuite
 		TestCount("TestCount"),
 		TestFailedCount("TestFailedCount"),
 		AutoRollbackMFs("AutoRollbackMFs"),
-		Result("Result");
+		Result("Result"),
+		Prefix1("Prefix1"),
+		Prefix2("Prefix2");
 
 		private java.lang.String metaName;
 
@@ -69,7 +71,7 @@ public class TestSuite
 
 	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
-	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.getSudoContext() can be used to obtain sudo access).
+	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
 	 */
 	public static unittesting.proxies.TestSuite initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -379,6 +381,78 @@ public class TestSuite
 			getMendixObject().setValue(context, MemberNames.Result.toString(), result.toString());
 		else
 			getMendixObject().setValue(context, MemberNames.Result.toString(), null);
+	}
+
+	/**
+	 * @return value of Prefix1
+	 */
+	public final java.lang.String getPrefix1()
+	{
+		return getPrefix1(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of Prefix1
+	 */
+	public final java.lang.String getPrefix1(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Prefix1.toString());
+	}
+
+	/**
+	 * Set value of Prefix1
+	 * @param prefix1
+	 */
+	public final void setPrefix1(java.lang.String prefix1)
+	{
+		setPrefix1(getContext(), prefix1);
+	}
+
+	/**
+	 * Set value of Prefix1
+	 * @param context
+	 * @param prefix1
+	 */
+	public final void setPrefix1(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String prefix1)
+	{
+		getMendixObject().setValue(context, MemberNames.Prefix1.toString(), prefix1);
+	}
+
+	/**
+	 * @return value of Prefix2
+	 */
+	public final java.lang.String getPrefix2()
+	{
+		return getPrefix2(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of Prefix2
+	 */
+	public final java.lang.String getPrefix2(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Prefix2.toString());
+	}
+
+	/**
+	 * Set value of Prefix2
+	 * @param prefix2
+	 */
+	public final void setPrefix2(java.lang.String prefix2)
+	{
+		setPrefix2(getContext(), prefix2);
+	}
+
+	/**
+	 * Set value of Prefix2
+	 * @param context
+	 * @param prefix2
+	 */
+	public final void setPrefix2(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String prefix2)
+	{
+		getMendixObject().setValue(context, MemberNames.Prefix2.toString(), prefix2);
 	}
 
 	/**
