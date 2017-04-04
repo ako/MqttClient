@@ -24,19 +24,19 @@ public class MqttConnector {
         }
     }
 
-    public void subscribe(String brokerHost, Long brokerPort, String topicName, String onMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
+    public void subscribe(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String onMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         logger.info("MqttConnector.subscribe");
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
         connection.subscribe(topicName, onMessageMicroflow);
     }
 
-    public void publish(String brokerHost, Long brokerPort, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
+    public void publish(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         logger.info("MqttConnector.publish");
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
         connection.publish(topicName, message);
     }
 
-    private MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
+    private MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String brokerOrganisation, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         String key = brokerHost + ":" + brokerPort;
         MqttConnection handler;
         synchronized (mqttHandlers) {
@@ -45,7 +45,7 @@ public class MqttConnector {
             if (!mqttHandlers.containsKey(key)) {
                 logger.info("creating new MqttConnection");
                 try {
-                    handler = new MqttConnection(logger, brokerHost, brokerPort, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
+                    handler = new MqttConnection(logger, brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
                     mqttHandlers.put(key, handler);
                 } catch (Exception e) {
                     logger.error(e);
@@ -63,7 +63,7 @@ public class MqttConnector {
     }
 
     public void unsubscribe(String brokerHost, Long brokerPort, String topicName) throws Exception {
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, null, null, null, null, null, null);
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, null, null, null, null, null, null, null);
         connection.unsubscribe(topicName);
     }
 
@@ -72,22 +72,34 @@ public class MqttConnector {
         private ILogNode logger;
         private MqttClient client;
         private HashMap<String, MqttSubscription> subscriptions = new HashMap<>();
+        private String broker;
+        private String clientId;
+        private MqttConnectOptions connOpts;
+        private MemoryPersistence persistence;
 
-        public MqttConnection(ILogNode logger, String brokerHost, Long brokerPort, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
+        public MqttConnection(ILogNode logger, String brokerHost,  Long brokerPort, String brokerOrganisation, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
             logger.info("new MqttConnection");
 
             this.logger = logger;
 
             String hostname = InetAddress.getLocalHost().getHostName();
             String xasId = Core.getXASId();
-            String clientId = "MxClient_" + xasId + "_" + hostname + "_" + brokerHost + "_" + brokerPort;
-            logger.info("new MqttConnection client id " + clientId);
-
+            
             boolean useSsl = (ClientCertificate != null && !ClientCertificate.equals(""));
-            String broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
-            MqttConnectOptions connOpts = new MqttConnectOptions();
+            connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
             connOpts.setAutomaticReconnect(true);
+            
+            if(brokerOrganisation != null && !brokerOrganisation.equals("")){
+            	broker = String.format("tcp://%1s.%2s:%d",brokerOrganisation, brokerHost, brokerPort);
+            	clientId = "a:" + brokerOrganisation + ":" + xasId;
+            }else{
+            	broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
+                clientId = "MxClient_" + xasId + "_" + hostname + "_" + brokerHost + "_" + brokerPort;
+            }
+            logger.info("new MqttConnection client id " + clientId);
+
+
 
             if (username != null && !username.equals("")) {
                 connOpts.setUserName(username);
@@ -125,7 +137,7 @@ public class MqttConnector {
                 }
             }
 
-            MemoryPersistence persistence = new MemoryPersistence();
+            persistence = new MemoryPersistence();
 
             try {
                 this.client = new MqttClient(broker, clientId, persistence);

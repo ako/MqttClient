@@ -19,6 +19,7 @@ public class MqttSubscribe extends CustomJavaAction<java.lang.Boolean>
 {
 	private java.lang.String BrokerHost;
 	private java.lang.Long BrokerPort;
+	private java.lang.String BrokerOrganisation;
 	private java.lang.Long Timeout;
 	private java.lang.String Username;
 	private java.lang.String Password;
@@ -29,11 +30,12 @@ public class MqttSubscribe extends CustomJavaAction<java.lang.Boolean>
 	private java.lang.String ClientKey;
 	private java.lang.String CertificatePassword;
 
-	public MqttSubscribe(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.Long Timeout, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String OnMessageMicroflow, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword)
+	public MqttSubscribe(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.Long Timeout, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String OnMessageMicroflow, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
 		this.BrokerPort = BrokerPort;
+		this.BrokerOrganisation = BrokerOrganisation;
 		this.Timeout = Timeout;
 		this.Username = Username;
 		this.Password = Password;
@@ -53,7 +55,7 @@ public class MqttSubscribe extends CustomJavaAction<java.lang.Boolean>
         try {
             MqttConnector handler = new MqttConnector(logger);
             logger.info(String.format("subscribe: %s", this.TopicName));
-            handler.subscribe(this.BrokerHost, this.BrokerPort, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
+            handler.subscribe(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
             return true;
         } catch (Exception e) {
             return false;

@@ -36,6 +36,16 @@ Microflow to handled messages received:
  ![][12]
 
 More info can be found here: [Using Mendix with TTN][14]
+
+## Usage with IBM IoT
+To use IBM IOT you need to fill in your organisation ID with your organisation ID. For the Username & Password you need to use the API Key for the username and Authentication Token for password.
+
+ ![IBM IOT][15]
+
+### Setting up your IBM Application
+To get your API Key and Authentication token login to your IBM IOT Launchpad and click on apps. Then click new Generate New API Key.
+ ![IBM Apps][16]
+
 ## Development
 
 Java dependencies are managed using Apache Ivy. There are two configuration:
@@ -60,6 +70,8 @@ included in the connector mpk.
   * Upgrade to mendix 6.10.0
   * Use microflow parameter type for subscription onMessageMicroflow
   * More TTN documentation
+* 1.2 - 2017-04-04
+  * Added support for IBM Watson
   
  [1]: http://mqtt.org/
  [2]: http://mosquitto.org/
@@ -75,3 +87,5 @@ included in the connector mpk.
  [12]: docs/images/ttn-callback-microflow.png
  [13]: license.txt
  [14]: docs/blogpost-ttn-mqtt-mendix.md
+ [15]: docs/images/ibm.png
+ [16]: docs/images/IBMApps.png
