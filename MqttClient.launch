@@ -11,7 +11,7 @@
 <mapEntry key="M2EE_ADMIN_PORT" value="8090"/>
 <mapEntry key="M2EE_CONSOLE_PATH" value="C:/Program Files/Mendix/7.0.2/modeler/MendixConsoleLog.exe"/>
 <mapEntry key="MX_INSTALL_PATH" value="C:/Program Files/Mendix/7.0.2"/>
-<mapEntry key="MXCONSOLE_BASE_PATH" value="C:/Users/sbl/Documents/GitHub/MqttClient/deployment"/>
+<mapEntry key="MXCONSOLE_BASE_PATH" value="C:/projects/mendix/MqttClient/deployment"/>
 <mapEntry key="MXCONSOLE_RUNTIME_PATH" value="C:/Program Files/Mendix/7.0.2/runtime"/>
 <mapEntry key="MXCONSOLE_RUNTIME_PORT" value="8080"/>
 <mapEntry key="MXCONSOLE_SERVER_URL" value="http://127.0.0.1:8090/"/>
@@ -26,7 +26,7 @@
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.mendix.container.boot.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="MqttClient"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.net.preferIPv4Stack=true -DMX_LOG_LEVEL=INFO -Djava.library.path=&quot;C:/Program Files/Mendix/7.0.2/runtime/lib/x64;C:/Users/sbl/Documents/GitHub/MqttClient/deployment/model/lib/userlib&quot; -Dfile.encoding=UTF-8 -Djava.io.tmpdir=&quot;C:/Users/sbl/Documents/GitHub/MqttClient/deployment/data/tmp&quot;"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="C:/Users/sbl/Documents/GitHub/MqttClient/deployment"/>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:/Users/sbl/Documents/GitHub/MqttClient/deployment"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.net.preferIPv4Stack=true -DMX_LOG_LEVEL=INFO -Djava.library.path=&quot;C:/Program Files/Mendix/7.0.2/runtime/lib/x64;C:/projects/mendix/MqttClient/deployment/model/lib/userlib&quot; -Dfile.encoding=UTF-8 -Djava.io.tmpdir=&quot;C:/projects/mendix/MqttClient/deployment/data/tmp&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="C:/projects/mendix/MqttClient/deployment"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:/projects/mendix/MqttClient/deployment"/>
 </launchConfiguration>

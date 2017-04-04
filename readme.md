@@ -87,5 +87,5 @@ included in the connector mpk.
  [12]: docs/images/ttn-callback-microflow.png
  [13]: license.txt
  [14]: docs/blogpost-ttn-mqtt-mendix.md
- [15]: docs/images/ibm.png
+ [15]: docs/images/IBM.png
  [16]: docs/images/IBMApps.png
