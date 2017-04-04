@@ -96,6 +96,30 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
+	public static void test_IBMPublish(IContext context)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			Core.execute(context, "TestMqttClient.Test_IBMPublish", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void test_IBMSubscribe(IContext context)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			Core.execute(context, "TestMqttClient.Test_IBMSubscribe", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
 	public static void test_SubscribeTwoMosquittoImportTopics(IContext context)
 	{
 		try
