@@ -31,9 +31,11 @@ public class MqttConnector {
         if(!connection.getClient().isConnected())
         	connection.getClient().reconnect();
         
+        while(!connection.getClient().isConnected()){
+        	//used to make sure it is connected before publishing.
+        	Thread.sleep(1000);
+        }
         connection.subscribe(topicName, onMessageMicroflow);
-
-        
     }
 
     public void publish(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
@@ -41,8 +43,11 @@ public class MqttConnector {
         MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
         if(!connection.getClient().isConnected())
         	connection.getClient().reconnect();
-        
-        	connection.publish(topicName, message);
+        while(!connection.getClient().isConnected()){
+        	//used to make sure it is connected before publishing.
+        	Thread.sleep(1000);
+        }
+        connection.publish(topicName, message);
     }
 
     private MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String brokerOrganisation, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
