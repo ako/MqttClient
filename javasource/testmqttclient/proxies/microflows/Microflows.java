@@ -96,6 +96,18 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
+	public static void test_IBMDisconnect(IContext context)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			Core.execute(context, "TestMqttClient.Test_IBMDisconnect", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
 	public static void test_IBMPublish(IContext context)
 	{
 		try

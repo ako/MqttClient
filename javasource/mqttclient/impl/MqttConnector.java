@@ -27,13 +27,22 @@ public class MqttConnector {
     public void subscribe(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String onMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         logger.info("MqttConnector.subscribe");
         MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
+        
+        if(!connection.getClient().isConnected())
+        	connection.getClient().reconnect();
+        
         connection.subscribe(topicName, onMessageMicroflow);
+
+        
     }
 
     public void publish(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
         logger.info("MqttConnector.publish");
         MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password);
-        connection.publish(topicName, message);
+        if(!connection.getClient().isConnected())
+        	connection.getClient().reconnect();
+        
+        	connection.publish(topicName, message);
     }
 
     private MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String brokerOrganisation, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password) throws Exception {
@@ -66,6 +75,11 @@ public class MqttConnector {
         MqttConnection connection = getMqttConnection(brokerHost, brokerPort, null, null, null, null, null, null, null);
         connection.unsubscribe(topicName);
     }
+    public void disconnect(String brokerHost, Long brokerPort, String topicName) throws Exception {
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, null, null, null, null, null, null, null);
+        connection.disconnect();
+    }
+
 
 
     private class MqttConnection {
@@ -150,9 +164,15 @@ public class MqttConnector {
                 throw e;
             }
         }
-
+        private MqttClient getClient(){
+        	return client;
+        }
         public void finalize() {
             logger.info("finalize MqttConnection");
+        }
+        
+        private void disconnect() throws MqttException{
+        	client.disconnect();
         }
 
         public boolean isSubscribed(String topic) {
