@@ -95,7 +95,7 @@ public class MqttConnector {
             	clientId = "a:" + brokerOrganisation + ":" + xasId;
             }else{
             	broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
-                clientId = "MxClient_" + xasId + "_" + hostname + "_" + brokerHost + "_" + brokerPort;
+                clientId = "bluemix-receiver";
             }
             logger.info("new MqttConnection client id " + clientId);
 
