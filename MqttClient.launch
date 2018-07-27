@@ -9,11 +9,13 @@
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
 <mapEntry key="M2EE_ADMIN_PASS" value="1"/>
 <mapEntry key="M2EE_ADMIN_PORT" value="8090"/>
+<mapEntry key="M2EE_ADMIN_LISTEN_ADDRESSES" value="*"/>
 <mapEntry key="M2EE_CONSOLE_PATH" value="C:/Program Files/Mendix/7.16.0/modeler/MendixConsoleLog.exe"/>
 <mapEntry key="MX_INSTALL_PATH" value="C:/Program Files/Mendix/7.16.0"/>
 <mapEntry key="MXCONSOLE_BASE_PATH" value="C:/Users/sbl/Documents/GitHub/MqttClient/deployment"/>
 <mapEntry key="MXCONSOLE_RUNTIME_PATH" value="C:/Program Files/Mendix/7.16.0/runtime"/>
 <mapEntry key="MXCONSOLE_RUNTIME_PORT" value="8080"/>
+<mapEntry key="MXCONSOLE_RUNTIME_LISTEN_ADDRESSES" value="*"/>
 <mapEntry key="MXCONSOLE_SERVER_URL" value="http://127.0.0.1:8090/"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.debug.core.source_locator_id" value="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"/>
