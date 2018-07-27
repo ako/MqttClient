@@ -12,9 +12,6 @@ public class UserActionsRegistrar
   public void registerActions(IActionRegistrator registrator)
   {
     registrator.bundleComponentLoaded();
-    registrator.registerUserAction(appcloudservices.actions.GenerateRandomPassword.class);
-    registrator.registerUserAction(appcloudservices.actions.LogOutUser.class);
-    registrator.registerUserAction(appcloudservices.actions.StartSignOnServlet.class);
     registrator.registerUserAction(mqttclient.actions.MqttInitialize.class);
     registrator.registerUserAction(mqttclient.actions.MqttPublish.class);
     registrator.registerUserAction(mqttclient.actions.MqttSubscribe.class);
