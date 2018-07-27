@@ -27,8 +27,10 @@ public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 	private java.lang.String ClientCertificate;
 	private java.lang.String ClientKey;
 	private java.lang.String CertificatePassword;
+	private mqttclient.proxies.qos QoS;
+	private java.lang.Long Timeout;
 
-	public MqttPublish(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String Payload, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword)
+	public MqttPublish(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String Payload, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword, java.lang.String QoS, java.lang.Long Timeout)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
@@ -42,6 +44,8 @@ public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 		this.ClientCertificate = ClientCertificate;
 		this.ClientKey = ClientKey;
 		this.CertificatePassword = CertificatePassword;
+		this.QoS = QoS == null ? null : mqttclient.proxies.qos.valueOf(QoS);
+		this.Timeout = Timeout;
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 		// BEGIN USER CODE
         MqttConnector handler = new MqttConnector(Core.getLogger("MqttConnector"));
         try {
-            handler.publish(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation,this.TopicName, this.Payload, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
+            handler.publish(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation,this.TopicName, this.Payload, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password, this.QoS, this.Timeout);
             return true;
         } catch (Exception e) {
             return false;

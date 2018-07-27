@@ -29,8 +29,9 @@ public class MqttSubscribe extends CustomJavaAction<java.lang.Boolean>
 	private java.lang.String ClientCertificate;
 	private java.lang.String ClientKey;
 	private java.lang.String CertificatePassword;
+	private mqttclient.proxies.qos QoS;
 
-	public MqttSubscribe(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.Long Timeout, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String OnMessageMicroflow, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword)
+	public MqttSubscribe(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.Long Timeout, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String OnMessageMicroflow, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword, java.lang.String QoS)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
@@ -45,6 +46,7 @@ public class MqttSubscribe extends CustomJavaAction<java.lang.Boolean>
 		this.ClientCertificate = ClientCertificate;
 		this.ClientKey = ClientKey;
 		this.CertificatePassword = CertificatePassword;
+		this.QoS = QoS == null ? null : mqttclient.proxies.qos.valueOf(QoS);
 	}
 
 	@Override
@@ -55,7 +57,7 @@ public class MqttSubscribe extends CustomJavaAction<java.lang.Boolean>
         try {
             MqttConnector handler = new MqttConnector(logger);
             logger.info(String.format("subscribe: %s", this.TopicName));
-            handler.subscribe(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password);
+            handler.subscribe(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password, this.QoS, this.Timeout);
             return true;
         } catch (Exception e) {
             return false;
