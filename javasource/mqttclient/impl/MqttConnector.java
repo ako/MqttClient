@@ -72,23 +72,21 @@ public class MqttConnector {
         private HashMap<String, MqttSubscription> subscriptions = new HashMap<>();
         private String broker;
         private String clientId;
-        private MqttConnectOptions connOpts;
-        private MemoryPersistence persistence;
 
         public MqttConnection(String brokerHost,  Long brokerPort, String brokerOrganisation, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password, long connectionTimeout) throws Exception {
             String hostname = InetAddress.getLocalHost().getHostName();
             String xasId = Core.getXASId();
             
             boolean useSsl = (ClientCertificate != null && !ClientCertificate.equals(""));
-            this.connOpts = new MqttConnectOptions();
-            this.connOpts.setCleanSession(true);
-            this.connOpts.setAutomaticReconnect(true);
+            MqttConnectOptions connOpts = new MqttConnectOptions();
+            connOpts.setCleanSession(true);
+            connOpts.setAutomaticReconnect(true);
             if(connectionTimeout != 0)
-            	this.connOpts.setConnectionTimeout(Math.toIntExact(connectionTimeout));
+            	connOpts.setConnectionTimeout(Math.toIntExact(connectionTimeout));
             else
-            	this.connOpts.setConnectionTimeout(60);
+            	connOpts.setConnectionTimeout(60);
             
-            this.connOpts.setKeepAliveInterval(60);
+            connOpts.setKeepAliveInterval(60);
             
             if(brokerOrganisation != null && !brokerOrganisation.equals("")){
             	this.broker = String.format("tcp://%1s.%2s:%d",brokerOrganisation, brokerHost, brokerPort);
@@ -103,15 +101,15 @@ public class MqttConnector {
 
 
             if (username != null && !username.equals("")) {
-                this.connOpts.setUserName(username);
+                connOpts.setUserName(username);
             }
             if (password != null && !password.equals("")) {
-                this.connOpts.setPassword(password.toCharArray());
+                connOpts.setPassword(password.toCharArray());
             }
 
             if (useSsl) {
                 this.broker = String.format("ssl://%s:%d", brokerHost, brokerPort);
-                this.connOpts.setCleanSession(true);
+                connOpts.setCleanSession(true);
 
                 try {
                     String resourcesPath = null;
@@ -122,7 +120,7 @@ public class MqttConnector {
                     } catch (Exception e) {
                         resourcesPath = "";
                     }
-                    this.connOpts.setSocketFactory(SslUtil.getSslSocketFactory(
+                    connOpts.setSocketFactory(SslUtil.getSslSocketFactory(
                             resourcesPath + CA,
                             resourcesPath + ClientCertificate,
                             resourcesPath + ClientKey,
@@ -134,12 +132,12 @@ public class MqttConnector {
                 }
             }
 
-            this.persistence = new MemoryPersistence();
+            MemoryPersistence persistence = new MemoryPersistence();
 
             try {
-                this.client = new MqttClient(this.broker, this.clientId, this.persistence);
+                this.client = new MqttClient(this.broker, this.clientId, persistence);
                 logger.info("Connecting to broker: " + this.broker);
-                this.client.connect(this.connOpts);
+                this.client.connect(connOpts);
                 this.client.setCallback(new MxMqttCallback(this.client, this.subscriptions));
                 logger.info("Connected");
             } catch (Exception e) {
@@ -179,7 +177,7 @@ public class MqttConnector {
         public void unsubscribe(String topicName) throws MqttException {
             logger.info(String.format("unsubscribe: %s, %s", topicName, this.client.getClientId()));
             try {
-                client.unsubscribe(topicName);
+                this.client.unsubscribe(topicName);
             } catch (MqttException e) {
                 logger.error(e);
                 throw e;

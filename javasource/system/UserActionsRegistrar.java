@@ -7,7 +7,6 @@ public class UserActionsRegistrar
   public void registerActions(IActionRegistrator registrator)
   {
     registrator.bundleComponentLoaded();
-    registrator.registerUserAction(mqttclient.actions.MqttInitialize.class);
     registrator.registerUserAction(mqttclient.actions.MqttPublish.class);
     registrator.registerUserAction(mqttclient.actions.MqttSubscribe.class);
     registrator.registerUserAction(mqttclient.actions.MqttUnsubscribe.class);

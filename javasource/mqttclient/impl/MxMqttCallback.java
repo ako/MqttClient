@@ -41,7 +41,7 @@ public class MxMqttCallback implements MqttCallbackExtended {
         try {
             MqttConnector.logger.info(String.format("messageArrived: %s, %s, %s", topic, new String(mqttMessage.getPayload()), this.client.getClientId()));
             IContext ctx = Core.createSystemContext();
-//            ISession session = ctx.getSession();
+
             MqttSubscription subscription = getSubscriptionForTopic(topic);
             if (subscription != null) {
                 String microflow = subscription.getOnMessageMicroflow();

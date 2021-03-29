@@ -11,9 +11,13 @@ package mqttclient.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-
 import mqttclient.impl.MqttConnector;
 
+/**
+ * 
+ * Returns true if successful
+ * if an exception occurs during the unsubscribe this activity will return a false
+ */
 public class MqttUnsubscribe extends CustomJavaAction<java.lang.Boolean>
 {
 	private java.lang.String BrokerHost;
