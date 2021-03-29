@@ -1,42 +1,45 @@
 package mqttclient.impl;
 
-import com.mendix.core.Core;
-import com.mendix.logging.ILogNode;
-
-import mqttclient.proxies.qos;
-
-import org.eclipse.paho.client.mqttv3.*;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-
 import java.io.File;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+
+import com.mendix.core.Core;
+import com.mendix.logging.ILogNode;
 
 /**
  * Created by ako on 1/9/2016.
  */
 public class MqttConnector {
     private static Map<String, MqttConnection> mqttHandlers;
-    private ILogNode logger;
+    protected static ILogNode _logger;
 
-    public MqttConnector(ILogNode logger) {
-        this.logger = logger;
+    private MqttConnector() {
+        _logger = Core.getLogger("MqttConnector");
         if (mqttHandlers == null) {
-            mqttHandlers = new HashMap();
+            mqttHandlers = new HashMap<String, MqttConnection>();
         }
     }
 
+    public static MqttConnector _getInstance() {
+    	return new MqttConnector();
+    }
+    
     public void subscribe(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String onMessageMicroflow, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password, mqttclient.proxies.qos QoS, long timeout) throws Exception {
-        logger.info("MqttConnector.subscribe");
+        _logger.info("MqttConnector.subscribe");
         MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password, timeout);
         connection.subscribe(topicName, onMessageMicroflow, QoS);
     }
 
     public void publish(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String message, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password, mqttclient.proxies.qos QoS, long timeout) throws Exception {
-        logger.info("MqttConnector.publish");
+        _logger.info("MqttConnector.publish");
         MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password, timeout);
         connection.publish(topicName, message, QoS);
     }
@@ -45,23 +48,23 @@ public class MqttConnector {
         String key = brokerHost + ":" + brokerPort;
         MqttConnection handler;
         synchronized (mqttHandlers) {
-            logger.info("NUmber of objects in mqttHandlers map: " + mqttHandlers.size());
+            _logger.info("NUmber of objects in mqttHandlers map: " + mqttHandlers.size());
 
             if (!mqttHandlers.containsKey(key)) {
-                logger.info("creating new MqttConnection");
+                _logger.info("creating new MqttConnection");
                 try {
-                    handler = new MqttConnection(logger, brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password, timeout);
+                    handler = new MqttConnection(_logger, brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password, timeout);
                     mqttHandlers.put(key, handler);
                 } catch (Exception e) {
-                    logger.error(e);
+                    _logger.error(e);
                     throw e;
                 }
 
             } else {
-                logger.info("Found existing MqttConnection");
+                _logger.info("Found existing MqttConnection");
                 handler = mqttHandlers.get(key);
             }
-            logger.info("Number of objects in mqttHandlers map: " + mqttHandlers.size());
+            _logger.info("Number of objects in mqttHandlers map: " + mqttHandlers.size());
         }
 
         return handler;
@@ -91,40 +94,40 @@ public class MqttConnector {
             String xasId = Core.getXASId();
             
             boolean useSsl = (ClientCertificate != null && !ClientCertificate.equals(""));
-            connOpts = new MqttConnectOptions();
-            connOpts.setCleanSession(true);
-            connOpts.setAutomaticReconnect(true);
+            this.connOpts = new MqttConnectOptions();
+            this.connOpts.setCleanSession(true);
+            this.connOpts.setAutomaticReconnect(true);
             if(connectionTimeout != 0)
-            	connOpts.setConnectionTimeout(Math.toIntExact(connectionTimeout));
+            	this.connOpts.setConnectionTimeout(Math.toIntExact(connectionTimeout));
             else
-            	connOpts.setConnectionTimeout(60);
+            	this.connOpts.setConnectionTimeout(60);
             
-            connOpts.setKeepAliveInterval(60);
+            this.connOpts.setKeepAliveInterval(60);
             
             if(brokerOrganisation != null && !brokerOrganisation.equals("")){
-            	broker = String.format("tcp://%1s.%2s:%d",brokerOrganisation, brokerHost, brokerPort);
-            	clientId = "a:" + brokerOrganisation + ":" + xasId;
+            	this.broker = String.format("tcp://%1s.%2s:%d",brokerOrganisation, brokerHost, brokerPort);
+            	this.clientId = "a:" + brokerOrganisation + ":" + xasId;
             }            
             else{
-            	broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
-                clientId = "MxClient_" + xasId + "_" + hostname + "_" + brokerHost + "_" + brokerPort;
+            	this.broker = String.format("tcp://%s:%d", brokerHost, brokerPort);
+                this.clientId = "MxClient_" + xasId + "_" + hostname + "_" + brokerHost + "_" + brokerPort;
             }
-            logger.info("new MqttConnection client id " + clientId);
+            logger.info("new MqttConnection client id " + this.clientId);
 
 
 
             if (username != null && !username.equals("")) {
-                connOpts.setUserName(username);
+                this.connOpts.setUserName(username);
             }
             if (password != null && !password.equals("")) {
-                connOpts.setPassword(password.toCharArray());
+                this.connOpts.setPassword(password.toCharArray());
             }
 
             if (useSsl) {
-                broker = String.format("ssl://%s:%d", brokerHost, brokerPort);
+                this.broker = String.format("ssl://%s:%d", brokerHost, brokerPort);
                 //connOpts = new MqttConnectOptions();
                 
-                connOpts.setCleanSession(true);
+                this.connOpts.setCleanSession(true);
 
                 try {
                     String resourcesPath = null;
@@ -136,7 +139,7 @@ public class MqttConnector {
                         //testing mode?
                         resourcesPath = "";
                     }
-                    connOpts.setSocketFactory(SslUtil.getSslSocketFactory(
+                    this.connOpts.setSocketFactory(SslUtil.getSslSocketFactory(
                             resourcesPath + CA,
                             resourcesPath + ClientCertificate,
                             resourcesPath + ClientKey,
@@ -148,13 +151,13 @@ public class MqttConnector {
                 }
             }
 
-            persistence = new MemoryPersistence();
+            this.persistence = new MemoryPersistence();
 
             try {
-                this.client = new MqttClient(broker, clientId, persistence);
-                logger.info("Connecting to broker: " + broker);
-                client.connect(connOpts);
-                client.setCallback(new MxMqttCallback(logger, client, subscriptions));
+                this.client = new MqttClient(this.broker, this.clientId, this.persistence);
+                logger.info("Connecting to broker: " + this.broker);
+                this.client.connect(this.connOpts);
+                this.client.setCallback(new MxMqttCallback(this.client, this.subscriptions));
                 logger.info("Connected");
             } catch (Exception e) {
                 logger.error(e);
@@ -162,20 +165,21 @@ public class MqttConnector {
             }
         }
 
-        public void finalize() {
-            logger.info("finalize MqttConnection");
+        @Override
+		public void finalize() {
+            this.logger.info("finalize MqttConnection");
         }
 
-        public boolean isSubscribed(String topic) {
-            return subscriptions.containsKey(topic);
-
-        }
+//        public boolean isSubscribed(String topic) {
+//            return this.subscriptions.containsKey(topic);
+//
+//        }
 
         public void subscribe(String topic, String onMessageMicroflow, mqttclient.proxies.qos QoS) throws MqttException {
-            logger.info(String.format("MqttConnection.subscribe: %s", client.getClientId()));
+            this.logger.info(String.format("MqttConnection.subscribe: %s", this.client.getClientId()));
             try {
-                if(!client.isConnected()){
-                    client.reconnect();
+                if(!this.client.isConnected()){
+                    this.client.reconnect();
                 }
                 int subscriptionQos = 0;
                 if(QoS.equals(mqttclient.proxies.qos.At_Most_Once_0)){
@@ -186,17 +190,17 @@ public class MqttConnector {
                 	subscriptionQos= 2;
                 }
 
-                client.subscribe(topic, subscriptionQos);
-                subscriptions.put(topic, new MqttSubscription(topic, onMessageMicroflow));
+                this.client.subscribe(topic, subscriptionQos);
+                this.subscriptions.put(topic, new MqttSubscription(topic, onMessageMicroflow));
             } catch (Exception e) {
-                logger.error(e);
+                this.logger.error(e);
                 throw e;
             }
 
         }
 
         public void publish(String topic, String message,mqttclient.proxies.qos QoS) throws MqttException {
-            logger.info(String.format("MqttConnection.publish: %s, %s, %s", topic, message, client.getClientId()));
+            this.logger.info(String.format("MqttConnection.publish: %s, %s, %s", topic, message, this.client.getClientId()));
             try {
                 MqttMessage payload = new MqttMessage(message.getBytes());
                 int subscriptionQos = 0;
@@ -208,20 +212,20 @@ public class MqttConnector {
                 	subscriptionQos= 2;
                 }
                 payload.setQos(subscriptionQos);
-                client.publish(topic, payload);
-                logger.info("Message published");
+                this.client.publish(topic, payload);
+                this.logger.info("Message published");
             } catch (Exception e) {
-                logger.error(e);
+                this.logger.error(e);
                 throw e;
             }
         }
 
         public void unsubscribe(String topicName) throws MqttException {
-            logger.info(String.format("unsubscribe: %s, %s", topicName, client.getClientId()));
+            this.logger.info(String.format("unsubscribe: %s, %s", topicName, this.client.getClientId()));
             try {
-                client.unsubscribe(topicName);
+                this.client.unsubscribe(topicName);
             } catch (MqttException e) {
-                logger.error(e);
+                this.logger.error(e);
                 throw e;
             }
         }

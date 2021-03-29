@@ -10,7 +10,6 @@ public class MqttSubscription {
     public MqttSubscription(String topic, String onMessageMicroflow) {
         this.onMessageMicroflow = onMessageMicroflow;
         this.topic = topic;
-
     }
 
     public String getTopic() {
