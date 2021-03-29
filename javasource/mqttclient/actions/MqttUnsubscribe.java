@@ -33,9 +33,7 @@ public class MqttUnsubscribe extends CustomJavaAction<java.lang.Boolean>
 	{
 		// BEGIN USER CODE
 		try {
-			MqttConnector handler = MqttConnector._getInstance();
-			handler.unsubscribe(this.BrokerHost, this.BrokerPort, this.TopicName);
-			
+			MqttConnector.unsubscribe(this.BrokerHost, this.BrokerPort, this.TopicName);
 			return true;
 		} catch (Exception e) {
 			return false;

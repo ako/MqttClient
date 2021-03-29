@@ -53,11 +53,8 @@ public class MqttSubscribe extends CustomJavaAction<java.lang.Boolean>
 	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-        ILogNode logger = Core.getLogger("MqttConnector");
         try {
-            MqttConnector handler = MqttConnector._getInstance();
-            logger.info(String.format("subscribe: %s", this.TopicName));
-            handler.subscribe(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password, this.QoS, this.Timeout);
+            MqttConnector.subscribe(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation, this.TopicName, this.OnMessageMicroflow, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password, this.QoS, this.Timeout);
             return true;
         } catch (Exception e) {
             return false;

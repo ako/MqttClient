@@ -52,9 +52,8 @@ public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-        MqttConnector handler = MqttConnector._getInstance();
-        try {
-            handler.publish(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation,this.TopicName, this.Payload, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password, this.QoS, this.Timeout);
+		try {
+        	MqttConnector.publish(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation,this.TopicName, this.Payload, this.CA, this.ClientCertificate, this.ClientKey, this.CertificatePassword, this.Username, this.Password, this.QoS, this.Timeout);
             return true;
         } catch (Exception e) {
             return false;
