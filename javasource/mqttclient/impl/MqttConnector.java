@@ -40,7 +40,7 @@ public class MqttConnector {
     }
 
     private static MqttConnection getMqttConnection(String brokerHost, Long brokerPort, String brokerOrganisation, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password, long timeout) throws Exception {
-        String key = brokerHost + ":" + brokerPort;
+        String key = brokerHost + ":" + brokerPort + ":" + brokerOrganisation + ":" + username;
         MqttConnection handler;
         synchronized (mqttHandlers) {
             logger.info("Number of objects in mqttHandlers map: " + mqttHandlers.size());
@@ -51,7 +51,7 @@ public class MqttConnector {
                     handler = new MqttConnection(brokerHost, brokerPort, brokerOrganisation, CA, ClientCertificate, ClientKey, CertificatePassword, username, password, timeout);
                     mqttHandlers.put(key, handler);
                 } catch (Exception e) {
-                    logger.error(e);
+                    logger.error(String.format("Unable to create an MQTT Connection to: (Host:%s:%d|Org:%s|u:%s)", brokerHost, brokerPort, brokerOrganisation,username), e);
                     throw e;
                 }
 
@@ -141,7 +141,6 @@ public class MqttConnector {
                 this.client.setCallback(new MxMqttCallback(this.client, this.subscriptions));
                 logger.info("Connected");
             } catch (Exception e) {
-                logger.error(e);
                 throw e;
             }
         }
