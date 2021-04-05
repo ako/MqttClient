@@ -29,8 +29,8 @@ public class MqttConnector {
         connection.subscribe(topicName, onMessageMicroflow, QoS);
     }
 
-    public static void unsubscribe(String brokerHost, Long brokerPort, String topicName) throws Exception {
-        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, null, null, null, null, null, null, null,0);
+    public static void unsubscribe(String brokerHost, Long brokerPort, String brokerOrganisation, String topicName, String username) throws Exception {
+        MqttConnection connection = getMqttConnection(brokerHost, brokerPort, brokerOrganisation, null, null, null, null, username, null,0);
         connection.unsubscribe(topicName);
     }
     

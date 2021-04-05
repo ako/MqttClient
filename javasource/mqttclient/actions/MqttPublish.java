@@ -19,6 +19,7 @@ public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 	private java.lang.String BrokerHost;
 	private java.lang.Long BrokerPort;
 	private java.lang.String BrokerOrganisation;
+	private java.lang.Long Timeout;
 	private java.lang.String Username;
 	private java.lang.String Password;
 	private java.lang.String TopicName;
@@ -28,14 +29,14 @@ public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 	private java.lang.String ClientKey;
 	private java.lang.String CertificatePassword;
 	private mqttclient.proxies.qos QoS;
-	private java.lang.Long Timeout;
 
-	public MqttPublish(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String Payload, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword, java.lang.String QoS, java.lang.Long Timeout)
+	public MqttPublish(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.Long Timeout, java.lang.String Username, java.lang.String Password, java.lang.String TopicName, java.lang.String Payload, java.lang.String CA, java.lang.String ClientCertificate, java.lang.String ClientKey, java.lang.String CertificatePassword, java.lang.String QoS)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
 		this.BrokerPort = BrokerPort;
 		this.BrokerOrganisation = BrokerOrganisation;
+		this.Timeout = Timeout;
 		this.Username = Username;
 		this.Password = Password;
 		this.TopicName = TopicName;
@@ -45,7 +46,6 @@ public class MqttPublish extends CustomJavaAction<java.lang.Boolean>
 		this.ClientKey = ClientKey;
 		this.CertificatePassword = CertificatePassword;
 		this.QoS = QoS == null ? null : mqttclient.proxies.qos.valueOf(QoS);
-		this.Timeout = Timeout;
 	}
 
 	@java.lang.Override

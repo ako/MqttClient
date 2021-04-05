@@ -22,13 +22,17 @@ public class MqttUnsubscribe extends CustomJavaAction<java.lang.Boolean>
 {
 	private java.lang.String BrokerHost;
 	private java.lang.Long BrokerPort;
+	private java.lang.String BrokerOrganisation;
+	private java.lang.String Username;
 	private java.lang.String TopicName;
 
-	public MqttUnsubscribe(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String TopicName)
+	public MqttUnsubscribe(IContext context, java.lang.String BrokerHost, java.lang.Long BrokerPort, java.lang.String BrokerOrganisation, java.lang.String Username, java.lang.String TopicName)
 	{
 		super(context);
 		this.BrokerHost = BrokerHost;
 		this.BrokerPort = BrokerPort;
+		this.BrokerOrganisation = BrokerOrganisation;
+		this.Username = Username;
 		this.TopicName = TopicName;
 	}
 
@@ -37,7 +41,7 @@ public class MqttUnsubscribe extends CustomJavaAction<java.lang.Boolean>
 	{
 		// BEGIN USER CODE
 		try {
-			MqttConnector.unsubscribe(this.BrokerHost, this.BrokerPort, this.TopicName);
+			MqttConnector.unsubscribe(this.BrokerHost, this.BrokerPort, this.BrokerOrganisation, this.TopicName, this.Username);
 			return true;
 		} catch (Exception e) {
 			return false;

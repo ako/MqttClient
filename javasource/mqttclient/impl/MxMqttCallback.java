@@ -11,7 +11,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import com.mendix.core.Core;
-import com.mendix.systemwideinterfaces.core.IContext;
 
 /**
  * Created by ako on 12-8-2016.
