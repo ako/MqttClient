@@ -1,7 +1,6 @@
 package mqttclient.impl;
 
 import java.io.File;
-import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
+import com.mendix.systemwideinterfaces.core.IDataType;
 
 /**
  * Created by ako on 1/9/2016.
@@ -161,7 +161,17 @@ public class MqttConnector {
                 	subscriptionQos= 2;
                 }
 
-                //TODO Add validation for input parameters of the on-message microflow
+                /* Request the input parameters from the OnMessageMicroflow so we can 
+                 * validate that both 'Topic' & 'Payload' present.
+                 */
+                Map<String, IDataType> params = Core.getInputParameters(onMessageMicroflow);
+                if( !params.containsKey("Topic") && !params.containsKey("Payload") )
+                	logger.warn("On Message Microflow: " + onMessageMicroflow + " is missing all required parameters [Topic & Payload]");
+                else if( !params.containsKey("Topic") )
+                    logger.warn("On Message Microflow: " + onMessageMicroflow + " is missing parameter [Topic]");
+                else if( !params.containsKey("Payload") )
+                    logger.warn("On Message Microflow: " + onMessageMicroflow + " is missing required parameter [Payload]");
+                
                 
                 this.client.subscribe(topic, subscriptionQos);
                 this.subscriptions.put(topic, new MqttSubscription(topic, onMessageMicroflow));
