@@ -138,7 +138,7 @@ public class MqttConnector {
                 this.client = new MqttClient(this.brokerURL, this.clientId, persistence);
                 logger.debug("Connecting to broker: " + this.brokerURL);
                 this.client.connect(connOpts);
-                this.client.setCallback(new MxMqttCallback(this.client, this.subscriptions));
+                this.client.setCallback(new MxMqttCallback(this.brokerKey, this.client, this.subscriptions));
                 logger.trace("Connected");
             } catch (Exception e) {
                 throw e;
@@ -147,7 +147,7 @@ public class MqttConnector {
 
 
         public void subscribe(String topic, String onMessageMicroflow, mqttclient.proxies.qos QoS) throws MqttException {
-            logger.info(String.format("MqttConnection.subscribe: %s", this.client.getClientId()));
+            logger.info(String.format("Subscribe: %s", this.client.getClientId()));
             try {
                 if(!this.client.isConnected()){
                     this.client.reconnect();
@@ -161,6 +161,8 @@ public class MqttConnector {
                 	subscriptionQos= 2;
                 }
 
+                //TODO Add validation for input parameters of the on-message microflow
+                
                 this.client.subscribe(topic, subscriptionQos);
                 this.subscriptions.put(topic, new MqttSubscription(topic, onMessageMicroflow));
             } catch (Exception e) {
@@ -170,7 +172,7 @@ public class MqttConnector {
 
         }
         public void unsubscribe(String topicName) throws MqttException {
-            logger.info(String.format("MqttConnection.unsubscribe: %s, %s", topicName, this.client.getClientId()));
+            logger.info(String.format("Unsubscribe: %s, %s", topicName, this.client.getClientId()));
             try {
             	this.subscriptions.remove(topicName);
             	
@@ -193,7 +195,7 @@ public class MqttConnector {
         }
 
         public void publish(String topic, String message,mqttclient.proxies.qos QoS) throws MqttException {
-            logger.debug(String.format("MqttConnection.publish: %s, %s, %s", topic, message, this.client.getClientId()));
+            logger.debug(String.format("Publish: %s, %s, %s", topic, message, this.client.getClientId()));
             try {
                 MqttMessage payload = new MqttMessage(message.getBytes());
                 int subscriptionQos = 0;

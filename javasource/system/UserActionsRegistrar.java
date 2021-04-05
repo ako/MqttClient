@@ -29,6 +29,7 @@ public class UserActionsRegistrar
     registrator.registerUserAction(objecthandling.actions.refreshClassByObject.class);
     registrator.registerUserAction(objecthandling.actions.StartTransaction.class);
     registrator.registerUserAction(system.actions.VerifyPassword.class);
+    registrator.registerUserAction(testmqttclient.actions.Sleep.class);
     registrator.registerUserAction(unittesting.actions.FindAllUnitTests.class);
     registrator.registerUserAction(unittesting.actions.ReportStepJava.class);
     registrator.registerUserAction(unittesting.actions.RunAllUnitTestsWrapper.class);

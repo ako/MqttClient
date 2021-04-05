@@ -64,15 +64,15 @@ public class Microflows
 		Map<java.lang.String, Object> params = new HashMap<>();
 		return (java.lang.Boolean) Core.microflowCall("TestMqttClient.Test_IBMSubscribe").withParams(params).execute(context);
 	}
+	public static boolean test_SubscribeMosquittoTopics_BBCSubtitles(IContext context)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		return (java.lang.Boolean) Core.microflowCall("TestMqttClient.Test_SubscribeMosquittoTopics_BBCSubtitles").withParams(params).execute(context);
+	}
 	public static boolean test_SubscribeTwoMosquittoImportTopics(IContext context)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
 		return (java.lang.Boolean) Core.microflowCall("TestMqttClient.Test_SubscribeTwoMosquittoImportTopics").withParams(params).execute(context);
-	}
-	public static boolean test_SubscribeTwoMosquittoTopics(IContext context)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		return (java.lang.Boolean) Core.microflowCall("TestMqttClient.Test_SubscribeTwoMosquittoTopics").withParams(params).execute(context);
 	}
 	public static boolean test_ThinkSpeakPublish(IContext context)
 	{

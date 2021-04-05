@@ -18,17 +18,18 @@ import com.mendix.systemwideinterfaces.core.IContext;
  */
 public class MxMqttCallback implements MqttCallbackExtended {
     private MqttClient client = null;
+    private String brokerKey;
     private HashMap<String, MqttSubscription> subscriptions = null;
 
-    protected MxMqttCallback(MqttClient client, HashMap<String, MqttSubscription> subscriptions) {
+    protected MxMqttCallback(String brokerKey, MqttClient client, HashMap<String, MqttSubscription> subscriptions) {
         this.client = client;
+        this.brokerKey=brokerKey;
         this.subscriptions = subscriptions;
     }
 
     @Override
     public void connectionLost(Throwable throwable) {
-        MqttConnector.logger.info(String.format("connectionLost: %s, %s", throwable.getMessage(), this.client.getClientId()));
-        MqttConnector.logger.warn(throwable);
+        MqttConnector.logger.warn(String.format("Connection Lost for: %s | %s, %s", this.brokerKey, throwable.getMessage(), this.client.getClientId()), throwable);
         try {
             this.client.connect();
         } catch (MqttException e) {
@@ -39,17 +40,15 @@ public class MxMqttCallback implements MqttCallbackExtended {
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
         try {
-            MqttConnector.logger.info(String.format("messageArrived: %s, %s, %s", topic, new String(mqttMessage.getPayload()), this.client.getClientId()));
-            IContext ctx = Core.createSystemContext();
+            MqttConnector.logger.debug(String.format("Message Arrived for: %s | %s | %s | %s", this.brokerKey, topic, this.client.getClientId(), new String(mqttMessage.getPayload())));
 
             MqttSubscription subscription = getSubscriptionForTopic(topic);
             if (subscription != null) {
                 String microflow = subscription.getOnMessageMicroflow();
-                MqttConnector.logger.info(String.format("Calling onMessage microflow: %s, %s", microflow, this.client.getClientId()));
+                MqttConnector.logger.trace(String.format("Calling onMessage microflow: %s, %s", microflow, this.client.getClientId()));
                 
                 final Map map = Map.of("Topic", topic, "Payload", new String(mqttMessage.getPayload()));
-                MqttConnector.logger.info("Parameter map: " + map);
-                Core.executeAsync(ctx, microflow, true, map);
+                Core.executeAsync(Core.createSystemContext(), microflow, true, map);
             } else {
                 MqttConnector.logger.error(String.format("Cannot find microflow for message received on topic %s", topic));
             }
@@ -68,18 +67,18 @@ public class MxMqttCallback implements MqttCallbackExtended {
      */
     private MqttSubscription getSubscriptionForTopic(String topic) {
 
-        MqttConnector.logger.info("getSubscriptionForTopic: " + topic);
+        MqttConnector.logger.trace("getSubscriptionForTopic: " + topic);
         Iterator<String> subscriptionTopics = this.subscriptions.keySet().iterator();
         while (subscriptionTopics.hasNext()) {
             String topicWithWildcards = subscriptionTopics.next();
             String topicWithWildcardsRe = topicWithWildcards.replaceAll("\\+", "[^/]+").replaceAll("/#", "\\(|/.*\\)");
-            MqttConnector.logger.info(String.format("Comparing topic %s with subscription %s as regex %s", topic, topicWithWildcards, topicWithWildcardsRe));
+            MqttConnector.logger.trace(String.format("Comparing topic %s with subscription %s as regex %s", topic, topicWithWildcards, topicWithWildcardsRe));
             if (topic.matches(topicWithWildcardsRe)) {
-                MqttConnector.logger.info("Found subscription " + topicWithWildcards);
+                MqttConnector.logger.trace("Found subscription " + topicWithWildcards);
                 return this.subscriptions.get(topicWithWildcards);
             }
         }
-        MqttConnector.logger.info("No subscription found for topic " + topic);
+
         return null;
     }
 
