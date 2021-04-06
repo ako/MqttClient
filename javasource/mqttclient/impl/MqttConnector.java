@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -68,12 +69,11 @@ public class MqttConnector {
 
 
 
-    private static class MqttConnection {
+    protected static class MqttConnection {
         private MqttClient client;
         private HashMap<String, MqttSubscription> subscriptions = new HashMap<>();
-        private String brokerURL;
         private String brokerKey;
-        private String clientId;
+        private MqttConnectOptions connectionOpts;
 
         public MqttConnection(String brokerHost,  Long brokerPort, String brokerOrganisation, String CA, String ClientCertificate, String ClientKey, String CertificatePassword, String username, String password, long connectionTimeout) throws Exception {
             this.brokerKey = formatBrokerId(brokerHost, brokerPort, brokerOrganisation, username);
@@ -88,15 +88,16 @@ public class MqttConnector {
             	connOpts.setConnectionTimeout(60);
             connOpts.setKeepAliveInterval(60);
             
+            String brokerURL = "", clientId = "";
             if(brokerOrganisation != null && !brokerOrganisation.equals("")){
-            	this.brokerURL = String.format("tcp://%1s.%2s:%d",brokerOrganisation, brokerHost, brokerPort);
-            	this.clientId = "a:" + brokerOrganisation + ":" + Core.getXASId();
+            	brokerURL = String.format("tcp://%1s.%2s:%d",brokerOrganisation, brokerHost, brokerPort);
+            	clientId = "a:" + brokerOrganisation + ":" + Core.getXASId();
             }
             else{
-            	this.brokerURL = String.format("tcp://%s:%d", brokerHost, brokerPort);
-                this.clientId = "MxClient_" + Core.getXASId();
+            	brokerURL = String.format("tcp://%s:%d", brokerHost, brokerPort);
+                clientId = "MxClient_" + Core.getXASId();
             }
-            logger.debug("Assigned MQTT Connection client id " + this.clientId + " to: " + formatBrokerId(brokerHost, brokerPort, brokerOrganisation, username));
+            logger.debug("Assigned MQTT Connection client id " + clientId + " to: " + formatBrokerId(brokerHost, brokerPort, brokerOrganisation, username));
 
 
 
@@ -108,7 +109,7 @@ public class MqttConnector {
             }
 
             if (useSsl) {
-                this.brokerURL = String.format("ssl://%s:%d", brokerHost, brokerPort);
+                brokerURL = String.format("ssl://%s:%d", brokerHost, brokerPort);
                 connOpts.setCleanSession(true);
 
                 try {
@@ -135,10 +136,12 @@ public class MqttConnector {
             MemoryPersistence persistence = new MemoryPersistence();
 
             try {
-                this.client = new MqttClient(this.brokerURL, this.clientId, persistence);
-                logger.debug("Connecting to broker: " + this.brokerURL);
-                this.client.connect(connOpts);
-                this.client.setCallback(new MxMqttCallback(this.brokerKey, this.client, this.subscriptions));
+                this.client = new MqttClient(brokerURL, clientId, persistence);
+                this.client.setCallback(new MxMqttCallback(this.brokerKey, this, this.subscriptions));
+                
+                logger.debug("Connecting to broker: " + brokerURL);
+                IMqttToken token = this.client.connectWithResult(connOpts);
+                token.waitForCompletion(connectionTimeout);
                 logger.trace("Connected");
             } catch (Exception e) {
                 throw e;
@@ -174,7 +177,7 @@ public class MqttConnector {
                 
                 
                 this.client.subscribe(topic, subscriptionQos);
-                this.subscriptions.put(topic, new MqttSubscription(topic, onMessageMicroflow));
+                this.subscriptions.put(topic, new MqttSubscription(topic, onMessageMicroflow, QoS));
             } catch (Exception e) {
                 logger.error(e);
                 throw e;
@@ -207,6 +210,10 @@ public class MqttConnector {
         public void publish(String topic, String message,mqttclient.proxies.qos QoS) throws MqttException {
             logger.debug(String.format("Publish: %s, %s, %s", topic, message, this.client.getClientId()));
             try {
+                if(!this.client.isConnected()){
+                    this.client.reconnect();
+                }
+                
                 MqttMessage payload = new MqttMessage(message.getBytes());
                 int subscriptionQos = 0;
                 if(QoS.equals(mqttclient.proxies.qos.At_Most_Once_0)){
@@ -225,6 +232,35 @@ public class MqttConnector {
                 throw e;
             }
         }
+
+		public void reconnect() {
+
+			int numAttempts = 0;
+			while( numAttempts < 10 && !this.client.isConnected() ) {
+		        try {
+		            logger.info(String.format("Attempt (%d/10) to re-establish connection to: %s", numAttempts, this.brokerKey));
+
+		        	IMqttToken token = this.client.connectWithResult(this.connectionOpts);
+		        	token.waitForCompletion();
+	                if (this.client.isConnected())
+			            logger.info(String.format("Attempt (%d/10) - Re-connected to: %s", numAttempts, this.brokerKey));
+
+		        } catch (MqttException e) {
+		            MqttConnector.logger.error(String.format("Attempt (%d/10) - An error occured while reconnecting to: %s", numAttempts, this.brokerKey), e);
+		        }
+		        
+		        //If we're still not connected wait 2 seconds before trying again
+		        finally {
+		        	numAttempts++;
+		        	try { 
+		        		if( !this.client.isConnected() ) Thread.sleep(2000);
+		        	} catch(InterruptedException e)  { } ; //Ignore this exception
+		        }
+	    	}
+
+	        if (!this.client.isConnected())
+	            logger.error(String.format("Reconnection Failed, quitting after multiple attempts to reconnect to: %s", numAttempts, this.brokerKey));
+		}
     }
     private static String formatBrokerId(String brokerHost, Long brokerPort, String brokerOrganisation, String username ) {
     	return String.format("[H:%s|O:%s|P:%d|U:%s]", brokerHost,brokerOrganisation,brokerPort,username);
