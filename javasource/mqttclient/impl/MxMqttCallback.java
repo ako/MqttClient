@@ -1,65 +1,63 @@
 package mqttclient.impl;
 
-import com.google.common.collect.ImmutableMap;
-import com.mendix.core.Core;
-import com.mendix.logging.ILogNode;
-import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.systemwideinterfaces.core.ISession;
-import org.eclipse.paho.client.mqttv3.*;
-
 import java.util.HashMap;
 import java.util.Iterator;
+
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import com.mendix.core.Core;
+
+import mqttclient.impl.MqttConnector.MqttConnection;
 
 /**
  * Created by ako on 12-8-2016.
  */
 public class MxMqttCallback implements MqttCallbackExtended {
-    private ILogNode logger = null;
-    private MqttClient client = null;
+    private MqttConnection mqttConnection = null;
+    private String brokerKey;
     private HashMap<String, MqttSubscription> subscriptions = null;
 
-    public MxMqttCallback(ILogNode logger, MqttClient client, HashMap<String, MqttSubscription> subscriptions) {
-        this.logger = logger;
-        this.client = client;
+    
+    protected MxMqttCallback(String brokerKey, MqttConnection mqttConnection, HashMap<String, MqttSubscription> subscriptions) {
+        this.mqttConnection = mqttConnection;
+        this.brokerKey=brokerKey;
         this.subscriptions = subscriptions;
     }
 
     @Override
     public void connectionLost(Throwable throwable) {
-        logger.info(String.format("connectionLost: %s, %s", throwable.getMessage(), client.getClientId()));
-        logger.warn(throwable);
-        try {
-            client.connect();
-        } catch (MqttException e) {
-            logger.error(e);
-        }
+        MqttConnector.logger.warn(String.format("Connection Lost for: %s | %s", this.brokerKey, throwable.getMessage()), throwable);
+    	this.mqttConnection.reconnect();		
     }
 
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
         try {
-            logger.info(String.format("messageArrived: %s, %s, %s", topic, new String(mqttMessage.getPayload()), client.getClientId()));
-            IContext ctx = Core.createSystemContext();
-            ISession session = ctx.getSession();
+            MqttConnector.logger.debug(String.format("Message Arrived for: %s | %s | %s", this.brokerKey, topic, new String(mqttMessage.getPayload())));
+
             MqttSubscription subscription = getSubscriptionForTopic(topic);
             if (subscription != null) {
                 String microflow = subscription.getOnMessageMicroflow();
-                logger.info(String.format("Calling onMessage microflow: %s, %s", microflow, client.getClientId()));
-                final ImmutableMap map = ImmutableMap.of("Topic", topic, "Payload", new String(mqttMessage.getPayload()));
-                logger.info("Parameter map: " + map);
-                //Core.execute(ctx, microflow, true, map);
-                Core.executeAsync(ctx, microflow, true, map);
+                MqttConnector.logger.trace(String.format("Calling onMessage microflow: %s, %s", microflow, this.brokerKey));
+                
+                Core.microflowCall(microflow)
+                	.withParam("Topic", topic)
+                	.withParam("Payload", new String(mqttMessage.getPayload()))
+                	.execute(Core.createSystemContext());
             } else {
-                logger.error(String.format("Cannot find microflow for message received on topic %s", topic));
+                MqttConnector.logger.error(String.format("Cannot find microflow for message received on topic %s", topic));
             }
         } catch (Exception e) {
-            logger.error(e);
+            MqttConnector.logger.error(e);
         }
     }
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-        logger.info(String.format("deliveryComplete: %s", client.getClientId()));
+        MqttConnector.logger.info(String.format("deliveryComplete: %s", this.brokerKey));
     }
 
     /**
@@ -67,30 +65,30 @@ public class MxMqttCallback implements MqttCallbackExtended {
      */
     private MqttSubscription getSubscriptionForTopic(String topic) {
 
-        logger.info("getSubscriptionForTopic: " + topic);
-        Iterator<String> subscriptionTopics = subscriptions.keySet().iterator();
+        MqttConnector.logger.trace("getSubscriptionForTopic: " + topic);
+        Iterator<String> subscriptionTopics = this.subscriptions.keySet().iterator();
         while (subscriptionTopics.hasNext()) {
             String topicWithWildcards = subscriptionTopics.next();
             String topicWithWildcardsRe = topicWithWildcards.replaceAll("\\+", "[^/]+").replaceAll("/#", "\\(|/.*\\)");
-            logger.info(String.format("Comparing topic %s with subscription %s as regex %s", topic, topicWithWildcards, topicWithWildcardsRe));
+            MqttConnector.logger.trace(String.format("Comparing topic %s with subscription %s as regex %s", topic, topicWithWildcards, topicWithWildcardsRe));
             if (topic.matches(topicWithWildcardsRe)) {
-                logger.info("Found subscription " + topicWithWildcards);
-                return subscriptions.get(topicWithWildcards);
+                MqttConnector.logger.trace("Found subscription " + topicWithWildcards);
+                return this.subscriptions.get(topicWithWildcards);
             }
         }
-        logger.info("No subscription found for topic " + topic);
+
         return null;
     }
 
     @Override
     public void connectComplete(boolean isReconnect, String serverUri) {
-        logger.info(String.format("connectComplete %s, %s", isReconnect, serverUri));
+        MqttConnector.logger.info(String.format("connectComplete %s, %s", isReconnect, serverUri));
         this.subscriptions.forEach((topic, subs) -> {
             try {
-                logger.info(String.format("Resubscribing microflow %s to topic %s (%s)", subs.getOnMessageMicroflow(), topic, subs.getTopic()));
-                client.subscribe(topic, 1);
+                MqttConnector.logger.info(String.format("Resubscribing microflow %s to topic %s (%s)", subs.getOnMessageMicroflow(), topic, subs.getTopic()));
+                this.mqttConnection.subscribe(topic, subs.getOnMessageMicroflow(),subs.getQoS());
             } catch (MqttException e) {
-                logger.error(String.format("Reconnect failed for topic %s: %s", topic, e.getMessage()));
+                MqttConnector.logger.error(String.format("Reconnect failed for topic %s: %s", topic, e.getMessage()));
             }
         });
     }

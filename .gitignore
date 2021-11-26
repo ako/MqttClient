@@ -51,6 +51,5 @@ Temporary Items
 .idea
 deployment
 certs
-userlib/*
-userlib/*.jar
+
 
